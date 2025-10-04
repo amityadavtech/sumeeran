@@ -145,9 +145,9 @@ const Home = () => {
         <div className="absolute bottom-1/4 left-0 w-48 md:w-72 h-48 md:h-72 bg-primary/5 rounded-full blur-3xl"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
+          <div className="lg:grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
             <ScrollReveal>
-              <div className="relative text-center lg:text-left">
+              <div className="relative  lg:text-left">
                 <div className="absolute -top-4 md:-top-8 left-1/2 lg:left-0 -translate-x-1/2 lg:translate-x-0 w-20 md:w-24 h-20 md:h-24 bg-gold/10 rounded-full blur-2xl"></div>
                 <div className="inline-flex items-center gap-2 px-6 py-2 bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-full mb-6">
                   <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
@@ -157,7 +157,7 @@ const Home = () => {
                   15 Years of Excellence in Beauty
                 </h2>
                 <p className="text-gray-600 text-sm sm:text-base md:text-lg mb-4 md:mb-6 leading-relaxed" data-testid="about-description-1">
-                  Luxe Beauty has been transforming lives through exceptional beauty services since 2009. Our commitment to excellence, combined with cutting-edge techniques and premium products, has made us the premier destination for beauty enthusiasts.
+                  Sumeeran Salon and Academy has been transforming lives through exceptional beauty services since 2009. Our commitment to excellence, combined with cutting-edge techniques and premium products, has made us the premier destination for beauty enthusiasts.
                 </p>
                 <p className="text-gray-600 text-sm sm:text-base md:text-lg mb-6 md:mb-8 leading-relaxed" data-testid="about-description-2">
                   We believe that true beauty comes from confidence, and our expert team is dedicated to helping you discover and enhance your natural radiance.
@@ -298,7 +298,7 @@ const Home = () => {
             <div className="text-center mb-12 md:mb-20">
               <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gold/30 to-primary/30 backdrop-blur-md border border-gold/40 rounded-full mb-6 md:mb-8">
                 <div className="w-2 h-2 bg-gold rounded-full animate-pulse"></div>
-                <span className="text-gold font-bold text-xs md:text-sm tracking-widest uppercase">Why Choose Luxe Beauty</span>
+                <span className="text-gold font-bold text-xs md:text-sm tracking-widest uppercase">Why Choose Sumeeran Salon and Academy</span>
               </div>
               <h2 className="text-3xl sm:text-4xl md:text-6xl font-playfair font-bold mb-4 md:mb-8 bg-gradient-to-r from-white via-gold to-white bg-clip-text text-transparent leading-tight px-4" data-testid="why-choose-us-title">
                 Experience The Luxe Difference

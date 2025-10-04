@@ -35,7 +35,7 @@ const Footer = () => {
           <div data-testid="footer-brand">
             <div className="flex items-center space-x-3 mb-6">
               <Sparkles className="text-3xl text-gold" />
-              <span className="text-2xl font-playfair font-bold text-white">Luxe Beauty</span>
+              <span className="text-2xl font-playfair font-bold text-white">Sumeeran Salon and Academy</span>
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
               Your destination for premium beauty and wellness services. Experience luxury that transforms.
@@ -142,7 +142,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 mb-4 md:mb-0" data-testid="footer-copyright">
-            &copy; 2024 Luxe Beauty Salon. All rights reserved.
+            &copy; 2024 Sumeeran Salon and Academy. All rights reserved.
           </p>
           <div className="flex space-x-6">
             <a 

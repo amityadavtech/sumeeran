@@ -6,7 +6,7 @@ const About = () => {
     {
       year: '2009',
       title: 'The Beginning',
-      description: 'Luxe Beauty was founded with a vision to bring world-class beauty services to discerning clients.',
+      description: 'Sumeeran Salon and Academy was founded with a vision to bring world-class beauty services to discerning clients.',
     },
     {
       year: '2012',
@@ -99,7 +99,7 @@ const About = () => {
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
           <ScrollReveal>
             <span className="inline-block px-4 md:px-6 py-2 bg-gold/20 backdrop-blur-sm border border-gold/30 rounded-full text-gold font-semibold text-xs md:text-sm tracking-wider mb-4 md:mb-6">
-              ABOUT LUXE BEAUTY
+              ABOUT Sumeeran Salon and Academy
             </span>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-bold mb-4 md:mb-6 leading-tight" data-testid="about-hero-title">
               Our Story, Your Beauty
@@ -125,13 +125,13 @@ const About = () => {
                 </h2>
                 <div className="space-y-4 md:space-y-6 text-gray-600 leading-relaxed text-sm md:text-base">
                   <p data-testid="story-paragraph-1">
-                    Founded in 2009, Luxe Beauty began as a small salon with a big dream - to create a space where beauty meets luxury, where every client feels like royalty. What started as a vision by founder Priya Sharma has grown into Mumbai's most sought-after beauty destination.
+                    Founded in 2009, Sumeeran Salon and Academy began as a small salon with a big dream - to create a space where beauty meets luxury, where every client feels like royalty. What started as a vision by founder Priya Sharma has grown into Mumbai's most sought-after beauty destination.
                   </p>
                   <p data-testid="story-paragraph-2">
                     Over the years, we've served more than 50,000 clients, each leaving our salon not just looking beautiful, but feeling confident and empowered. Our commitment to excellence has earned us recognition from beauty industry leaders and countless testimonials from satisfied clients.
                   </p>
                   <p data-testid="story-paragraph-3">
-                    Today, Luxe Beauty stands as a testament to what passion, dedication, and unwavering commitment to quality can achieve. We continue to evolve, adopting the latest techniques and technologies while staying true to our core values of luxury, comfort, and exceptional service.
+                    Today, Sumeeran Salon and Academy stands as a testament to what passion, dedication, and unwavering commitment to quality can achieve. We continue to evolve, adopting the latest techniques and technologies while staying true to our core values of luxury, comfort, and exceptional service.
                   </p>
                 </div>
               </div>
@@ -343,7 +343,7 @@ const About = () => {
                 What Drives Us
               </h2>
               <p className="text-gray-200 text-sm md:text-base lg:text-lg max-w-3xl mx-auto px-4" data-testid="values-description">
-                The core principles that guide everything we do at Luxe Beauty
+                The core principles that guide everything we do at Sumeeran Salon and Academy
               </p>
             </div>
           </ScrollReveal>

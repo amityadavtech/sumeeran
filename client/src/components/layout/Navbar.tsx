@@ -53,7 +53,7 @@ const Navbar = () => {
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-3" data-testid="logo-link">
               <Sparkles className="text-3xl text-primary" />
-              <span className="text-2xl font-playfair font-bold text-text-dark">Luxe Beauty</span>
+              <span className="text-2xl font-playfair font-bold text-text-dark">Sumeeran Salon and Academy</span>
             </Link>
 
             {/* Desktop Menu */}
@@ -117,7 +117,7 @@ const Navbar = () => {
                     <div className="absolute inset-0 bg-gradient-to-br from-primary to-gold rounded-full blur-md opacity-30"></div>
                     <Sparkles className="relative text-3xl text-primary" />
                   </div>
-                  <span className="text-2xl font-playfair font-bold bg-gradient-to-r from-primary to-gold bg-clip-text text-transparent">Luxe Beauty</span>
+                  <span className="text-2xl font-playfair font-bold bg-gradient-to-r from-primary to-gold bg-clip-text text-transparent">Sumeeran Salon and Academy</span>
                 </div>
                 
                 <div className="space-y-2">

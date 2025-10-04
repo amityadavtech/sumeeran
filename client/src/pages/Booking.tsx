@@ -330,7 +330,7 @@ const Booking = () => {
                       Booking Confirmed!
                     </h3>
                     <p className="text-gray-600 mb-8">
-                      Thank you for choosing Luxe Beauty. Your appointment has been successfully booked.
+                      Thank you for choosing Sumeeran Salon and Academy. Your appointment has been successfully booked.
                     </p>
                   </div>
 
