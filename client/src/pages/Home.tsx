@@ -7,6 +7,7 @@ import TestimonialCarousel from '@/components/ui/TestimonialCarousel';
 import ServiceCard from '@/components/ui/ServiceCard';
 import GalleryGrid from '@/components/ui/GalleryGrid';
 import PricingCard from '@/components/ui/PricingCard';
+import HeroCarousel from '@/components/ui/HeroCarousel';
 
 const Home = () => {
   const services = [
@@ -106,49 +107,32 @@ const Home = () => {
 
   return (
     <div className="min-h-screen" data-testid="home-page">
-      {/* Hero Section */}
+      {/* Hero Section with Auto-Sliding Carousel */}
       <section 
-        className="relative h-screen flex items-center justify-center overflow-hidden parallax"
-        style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080)'
-        }}
+        className="relative h-screen overflow-hidden"
         data-testid="hero-section"
       >
-        <div className="hero-gradient absolute inset-0"></div>
+        <HeroCarousel />
         
-        <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
-          <ScrollReveal>
-            <div className="mb-6">
-              <span className="inline-block px-6 py-2 bg-gold/20 backdrop-blur-sm border border-gold/30 rounded-full text-gold font-semibold text-sm tracking-wider">
-                PREMIUM BEAUTY EXPERIENCE
-              </span>
-            </div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-playfair font-bold mb-6 leading-tight" data-testid="hero-title">
-              Where Beauty <br/> Meets Luxury
-            </h1>
-            <p className="text-xl md:text-2xl mb-10 text-gray-100 max-w-3xl mx-auto" data-testid="hero-description">
-              Experience world-class beauty treatments in an atmosphere of pure elegance and sophistication
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link href="/booking">
-                <Button className="btn-gradient text-lg px-8 py-4" data-testid="hero-book-button">
-                  <span>Book Your Experience</span>
-                </Button>
-              </Link>
-              <Link href="/services">
-                <Button 
-                  variant="outline" 
-                  className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20 text-lg px-8 py-4"
-                  data-testid="hero-explore-button"
-                >
-                  Explore Services
-                </Button>
-              </Link>
-            </div>
-          </ScrollReveal>
+        {/* CTA Buttons */}
+        <div className="absolute bottom-24 md:bottom-32 left-1/2 -translate-x-1/2 z-20 flex flex-col sm:flex-row gap-4 justify-center items-center px-4">
+          <Link href="/booking">
+            <Button className="btn-gradient text-base md:text-lg px-6 md:px-8 py-3 md:py-4 shadow-2xl" data-testid="hero-book-button">
+              <span>Book Your Experience</span>
+            </Button>
+          </Link>
+          <Link href="/services">
+            <Button 
+              variant="outline" 
+              className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-gold/30 hover:border-gold text-base md:text-lg px-6 md:px-8 py-3 md:py-4 shadow-xl"
+              data-testid="hero-explore-button"
+            >
+              Explore Services
+            </Button>
+          </Link>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce z-20 hidden md:block">
           <ArrowRight className="rotate-90 text-2xl" />
         </div>
       </section>
