@@ -256,7 +256,7 @@
 }
 
 .story-slide-track {
-  @apply flex gap-6 animate-infinite-scroll;
+  @apply flex gap-6;
   animation: scroll 20s linear infinite;
 }
 
