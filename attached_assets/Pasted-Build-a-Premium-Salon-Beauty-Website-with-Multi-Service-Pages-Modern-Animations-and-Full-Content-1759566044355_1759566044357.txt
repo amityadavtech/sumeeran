@@ -1,0 +1,349 @@
+Build a Premium Salon & Beauty Website with Multi-Service Pages, Modern Animations, and Full-Content UI using Next.js + Tailwind CSS
+
+🧾 Prompt Description (Full Instruction for Replit AI):
+
+Build a fully responsive, premium, and content-rich salon & beauty service website inspired by knksaloon.in, but with more modern design, premium feel, and rich animations.
+The website must not look empty — it should have many sections, sub-pages, scroll animations, and premium presentation.
+
+⚙️ Tech Stack:
+
+Next.js 14 (App Router)
+
+Tailwind CSS
+
+Framer Motion (for scroll + fade animations)
+
+React Icons
+
+Google Fonts: Poppins (text), Playfair Display (headings)
+
+SEO optimized (Next SEO / <Head> tags)
+
+Image optimization using next/image
+
+Deployed on Vercel (optional)
+
+🎨 Theme & Color Palette (Luxurious Feel):
+Element	Color
+Primary	#A6377F
+Secondary	#510273
+Accent	#F25E5E
+Background	#F2F2F2
+Gold Accent	#D4AF37
+Text Dark	#1A1A1A
+Text Light	#FFFFFF
+🌍 Website Structure (Full Pages):
+Main Pages:
+
+/ → Home
+
+/about → About
+
+/services → Services Main Page
+
+/services/hair → Hair Services
+
+/services/skin → Skin Treatments
+
+/services/nails → Nail Care
+
+/services/makeup → Makeup & Beauty
+
+/services/spa → Spa & Relaxation
+
+/services/bridal → Bridal Packages
+
+/pricing → Packages & Pricing
+
+/gallery → Gallery Showcase
+
+/booking → Booking Page
+
+/contact → Contact Page
+
+/blog → Blog Page (optional)
+
+404 → Creative Not Found Page
+
+🏠 Home Page (Rich and Premium):
+
+Sections:
+
+Hero Section with video background and animated tagline
+
+About Preview section
+
+Premium Services preview (Hair, Skin, Nails, Spa, Makeup, Bridal)
+
+Experience & Interiors section with parallax
+
+Before/After Showcase slider
+
+Why Choose Us cards (Luxury, Experts, Hygiene, Comfort)
+
+Animated Stats/Counters (Years, Clients, Awards)
+
+Testimonials Carousel (auto-slide, fade)
+
+Gallery Highlights (horizontal scroll + lightbox)
+
+Final CTA Section: “Book Your Luxury Experience Today”
+
+Full footer with map, links, timings, and social icons
+
+💄 About Page:
+
+Hero banner with tagline “Our Story, Your Beauty”
+
+Timeline animation of the brand journey
+
+Team section with hover animations
+
+Mission, Vision, and Values cards
+
+Quote section with parallax effect
+
+✨ Services Main Page (/services):
+
+Hero: “Explore Our Services”
+
+Tabs/Filters for Hair | Skin | Nails | Makeup | Spa | Bridal
+
+Cards with short descriptions, icons, and “View More” links to detailed subpages.
+
+Smooth fade & slide animations on scroll
+
+💇‍♀️ /services/hair
+
+Sections:
+
+Hero: “Transform Your Hair”
+
+Haircuts & Styling
+
+Hair Coloring (Balayage, Highlights, Ombré)
+
+Hair Spa & Keratin Treatment
+
+Hair Extensions (Before/After slider)
+
+CTA: “Book a Free Hair Consultation”
+
+💅 /services/nails
+
+Sections:
+
+Hero: “Nail Perfection, Redefined”
+
+Nail Art Gallery (carousel)
+
+Manicure & Pedicure Services
+
+Nail Extensions with before-after photos
+
+Hygiene Promise icons
+
+CTA: “Book Nail Appointment”
+
+🌸 /services/skin
+
+Sections:
+
+Hero: “Glow that Speaks for You”
+
+Facial Treatments (Hydrafacial, Brightening, De-tan)
+
+Skin Rejuvenation & Laser Therapy
+
+Acne/Pigmentation Care
+
+Skincare Consultation
+
+CTA: “Let Your Skin Shine Naturally”
+
+💋 /services/makeup
+
+Sections:
+
+Hero: “Be the Star of Every Moment”
+
+Bridal, Party, and Editorial Makeup
+
+Before/After Showcase
+
+Makeup Product Showcase
+
+CTA: “Book Your Glam Session”
+
+💆‍♀️ /services/spa
+
+Sections:
+
+Hero: “Relax. Refresh. Rejuvenate.”
+
+Body Massage & Aromatherapy
+
+Stone Therapy, Steam Detox, Meditation
+
+Gallery of spa ambience
+
+CTA: “Schedule a Relaxation Session”
+
+👰 /services/bridal
+
+Sections:
+
+Hero: “The Perfect Bridal Glow”
+
+Pre-Bridal Packages (Skin, Hair, Nails)
+
+Bridal Day Makeup & Styling
+
+Couple Combo Packages
+
+CTA: “Plan Your Big Day With Us”
+
+💰 Pricing Page
+
+Tiered plans: Basic | Classic | Elite | Royal
+
+Compare table showing included services
+
+Hover animations with gold borders
+
+Custom Plan Request form
+
+📸 Gallery Page
+
+Masonry grid gallery with filters
+
+Lightbox viewer
+
+Video gallery section
+
+Lazy load + fade-in animations
+
+📅 Booking Page
+
+Step-based form with animated transitions
+
+Steps: Select Service → Date/Time → Personal Info → Confirmation
+
+Success screen with confetti animation
+
+📞 Contact Page
+
+Hero: “Let’s Connect”
+
+Contact form (name, email, phone, message)
+
+Embedded Google Map
+
+Cards for phone, email, and timing
+
+Floating WhatsApp and Call buttons
+
+🧾 Blog Page (Optional)
+
+Grid layout with feature image & snippet
+
+Single post page with reading progress bar
+
+SEO-friendly slugs & metadata
+
+💫 Premium Design Elements
+
+✅ Floating “Book Now” button
+✅ WhatsApp & Call floating icons
+✅ Animated scroll progress bar
+✅ Navbar transition on scroll
+✅ Preloader animation with salon logo
+✅ Parallax scrolling in hero & section backgrounds
+✅ Gradient hover buttons
+✅ Image zoom & shimmer effects
+✅ Animated section dividers (waves, gradients)
+✅ Interactive stats counters
+✅ Testimonials auto-slide carousel
+
+🧩 Components to Include
+
+Navbar.jsx
+
+Footer.jsx
+
+HeroSection.jsx
+
+ServiceCard.jsx
+
+TestimonialCarousel.jsx
+
+GalleryGrid.jsx
+
+PricingCard.jsx
+
+BookingForm.jsx
+
+ContactForm.jsx
+
+Loader.jsx
+
+ScrollAnimationWrapper.jsx
+
+CounterSection.jsx
+
+🧱 Recommended Folder Structure
+/app
+  /about
+  /services
+    /hair
+    /skin
+    /nails
+    /makeup
+    /spa
+    /bridal
+  /gallery
+  /pricing
+  /booking
+  /contact
+  /blog
+/components
+  Navbar.jsx
+  Footer.jsx
+  HeroSection.jsx
+  ServiceCard.jsx
+  TestimonialCarousel.jsx
+  GalleryGrid.jsx
+  PricingCard.jsx
+  BookingForm.jsx
+  ContactForm.jsx
+  Loader.jsx
+  CounterSection.jsx
+  ScrollAnimationWrapper.jsx
+/public
+  /images
+  /videos
+/styles
+  globals.css
+
+⚙️ Performance & SEO
+
+Use next/image for optimized images
+
+Add metadata and Open Graph tags for each page
+
+Sitemap + robots.txt generation
+
+Lazy load heavy sections
+
+Minify JS & CSS
+
+Preload fonts
+
+Fast build for Vercel hosting
+
+📢 Final Summary for Replit AI:
+
+Create a premium, detailed salon website inspired by knksaloon.in using Next.js + Tailwind CSS + Framer Motion.
+Include multiple service subpages (/services/hair, /services/nails, /services/skin, /services/makeup, /services/spa, /services/bridal) with rich content, elegant layout, and professional animations.
+The website must feel full, luxurious, modern, and interactive — with elegant motion, parallax effects, image transitions, and non-empty visual sections.
+Deliver a complete UI + folder structure + starter layout setup ready for deployment.
