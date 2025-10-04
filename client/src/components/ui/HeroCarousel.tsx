@@ -74,7 +74,7 @@ const HeroCarousel = () => {
             backgroundPosition: 'center',
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 via-primary/80 to-secondary/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#FF6B6B]/90 via-[#FF9F80]/85 to-[#FF6B6B]/80" />
         </div>
       ))}
 
