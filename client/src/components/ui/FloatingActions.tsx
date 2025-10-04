@@ -1,0 +1,48 @@
+import { Phone, MessageCircle, Calendar } from 'lucide-react';
+
+const FloatingActions = () => {
+  const actions = [
+    {
+      href: 'https://wa.me/1234567890',
+      icon: MessageCircle,
+      bg: 'bg-green-500 hover:bg-green-600',
+      label: 'WhatsApp',
+      delay: '0.1s',
+    },
+    {
+      href: 'tel:+1234567890',
+      icon: Phone,
+      bg: 'bg-blue-500 hover:bg-blue-600',
+      label: 'Call',
+      delay: '0.2s',
+    },
+    {
+      href: '/booking',
+      icon: Calendar,
+      bg: 'bg-primary hover:bg-secondary',
+      label: 'Book Now',
+      delay: '0.3s',
+    },
+  ];
+
+  return (
+    <div className="fixed bottom-8 right-8 z-50 flex flex-col gap-4" data-testid="floating-actions">
+      {actions.map((action) => (
+        <a
+          key={action.label}
+          href={action.href}
+          target={action.href.startsWith('http') ? '_blank' : undefined}
+          rel={action.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+          className={`w-14 h-14 ${action.bg} rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 animate-float`}
+          style={{ animationDelay: action.delay }}
+          data-testid={`floating-action-${action.label.toLowerCase().replace(/\s+/g, '-')}`}
+        >
+          <action.icon className="text-white text-xl" />
+          <span className="sr-only">{action.label}</span>
+        </a>
+      ))}
+    </div>
+  );
+};
+
+export default FloatingActions;

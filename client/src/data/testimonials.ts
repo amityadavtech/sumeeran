@@ -1,0 +1,42 @@
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Priya Sharma',
+    service: 'Bridal Package Client',
+    text: 'Absolutely phenomenal experience! The bridal package exceeded all my expectations. The team made me feel like royalty, and I\'ve never looked more beautiful. Every detail was perfection!',
+    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150',
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: 'Ananya Verma',
+    service: 'Hair Services Client',
+    text: 'The hair transformation I received was beyond amazing! My hair has never been healthier or looked better. The keratin treatment was a game-changer. Highly recommend!',
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150',
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: 'Meera Reddy',
+    service: 'Spa Services Client',
+    text: 'The spa experience was absolutely divine! I left feeling completely refreshed and rejuvenated. The ambiance, the service, everything was perfect. My go-to place for relaxation!',
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150',
+    rating: 5,
+  },
+  {
+    id: 4,
+    name: 'Kavya Patel',
+    service: 'Makeup Artist Client',
+    text: 'The makeup for my anniversary party was flawless! The artist understood exactly what I wanted and delivered beyond my expectations. I felt like a movie star!',
+    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150',
+    rating: 5,
+  },
+  {
+    id: 5,
+    name: 'Shreya Gupta',
+    service: 'Nail Care Client',
+    text: 'The nail art designs are incredible! The attention to detail and hygiene standards are unmatched. My nails have never looked better. Definitely coming back!',
+    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150',
+    rating: 5,
+  },
+];
