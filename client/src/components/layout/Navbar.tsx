@@ -105,54 +105,63 @@ const Navbar = () => {
                 <Button 
                   variant="ghost" 
                   size="icon" 
-                  className="lg:hidden"
+                  className="lg:hidden hover:bg-primary/10"
                   data-testid="mobile-menu-button"
                 >
-                  <Menu className="h-6 w-6" />
+                  <Menu className="h-6 w-6 text-primary" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-                <div className="flex items-center space-x-3 mb-8">
-                  <Sparkles className="text-2xl text-primary" />
-                  <span className="text-xl font-playfair font-bold text-text-dark">Luxe Beauty</span>
+              <SheetContent side="right" className="w-[85vw] sm:w-[400px] bg-gradient-to-br from-white via-bg-light to-white border-l-2 border-gold/20">
+                <div className="flex items-center justify-center gap-3 mb-10 pb-6 border-b border-gold/20">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary to-gold rounded-full blur-md opacity-30"></div>
+                    <Sparkles className="relative text-3xl text-primary" />
+                  </div>
+                  <span className="text-2xl font-playfair font-bold bg-gradient-to-r from-primary to-gold bg-clip-text text-transparent">Luxe Beauty</span>
                 </div>
                 
-                <div className="space-y-4">
-                  {navLinks.map((link) => (
+                <div className="space-y-2">
+                  {navLinks.map((link, idx) => (
                     <div key={link.href}>
                       <Link 
                         href={link.href}
-                        className={`block text-text-dark hover:text-primary transition-colors font-medium ${
-                          location === link.href ? 'text-primary' : ''
+                        className={`block text-base font-medium px-4 py-3 rounded-xl transition-all duration-300 ${
+                          location === link.href 
+                            ? 'bg-gradient-to-r from-primary to-gold text-white shadow-lg' 
+                            : 'text-text-dark hover:bg-primary/10 hover:text-primary'
                         }`}
                         onClick={() => setIsMobileMenuOpen(false)}
                         data-testid={`mobile-nav-link-${link.label.toLowerCase()}`}
                       >
-                        {link.label}
+                        <div className="flex items-center justify-between">
+                          <span>{link.label}</span>
+                          {link.hasDropdown && <ChevronDown className="w-4 h-4" />}
+                        </div>
                       </Link>
                       {link.hasDropdown && (
-                        <div className="pl-4 mt-2 space-y-2">
+                        <div className="pl-6 mt-2 space-y-1 mb-3">
                           {link.subLinks?.map((subLink) => (
                             <Link 
                               key={subLink.href}
                               href={subLink.href}
-                              className="block text-sm text-gray-600 hover:text-primary transition-colors"
+                              className="block text-sm text-gray-600 hover:text-primary transition-colors py-2 px-3 rounded-lg hover:bg-primary/5"
                               onClick={() => setIsMobileMenuOpen(false)}
                               data-testid={`mobile-nav-sublink-${subLink.label.toLowerCase().replace(/\s+/g, '-')}`}
                             >
-                              {subLink.label}
+                              • {subLink.label}
                             </Link>
                           ))}
                         </div>
                       )}
-                      <Separator className="mt-4" />
                     </div>
                   ))}
-                  <Link href="/booking" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Button className="w-full btn-gradient mt-6" data-testid="mobile-book-appointment-button">
-                      <span>Book Appointment</span>
-                    </Button>
-                  </Link>
+                  <div className="pt-6 mt-6 border-t border-gold/20">
+                    <Link href="/booking" onClick={() => setIsMobileMenuOpen(false)}>
+                      <Button className="w-full btn-gradient py-6 text-base font-bold shadow-xl" data-testid="mobile-book-appointment-button">
+                        <span>Book Appointment</span>
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               </SheetContent>
             </Sheet>

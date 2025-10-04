@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 // Layout Components
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
-import FloatingActions from "./components/ui/FloatingActions";
 import Preloader from "./components/ui/Preloader";
 
 // Pages
@@ -70,7 +69,6 @@ function Router() {
         </Switch>
       </main>
       <Footer />
-      <FloatingActions />
     </div>
   );
 }

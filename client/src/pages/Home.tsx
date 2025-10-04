@@ -139,34 +139,38 @@ const Home = () => {
       </section>
 
       {/* About Preview Section - Premium Story Carousel */}
-      <section className="py-24 bg-gradient-to-b from-white to-bg-light relative overflow-hidden" data-testid="about-preview-section">
-        <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white to-transparent"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <section className="py-16 md:py-24 bg-gradient-to-b from-white via-bg-light to-white relative overflow-hidden" data-testid="about-preview-section">
+        <div className="absolute top-0 left-0 w-full h-24 md:h-32 bg-gradient-to-b from-white to-transparent"></div>
+        <div className="absolute top-1/4 right-0 w-48 md:w-72 h-48 md:h-72 bg-gold/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 left-0 w-48 md:w-72 h-48 md:h-72 bg-primary/5 rounded-full blur-3xl"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
             <ScrollReveal>
-              <div className="relative">
-                <div className="absolute -top-8 -left-8 w-24 h-24 bg-gold/10 rounded-full blur-2xl"></div>
-                <span className="inline-block px-6 py-2 bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-full text-primary font-semibold text-sm tracking-wider mb-6">
-                  OUR STORY
-                </span>
-                <h2 className="text-4xl md:text-6xl font-playfair font-bold mb-6 text-text-dark bg-gradient-to-r from-primary via-secondary to-gold bg-clip-text text-transparent" data-testid="about-title">
+              <div className="relative text-center lg:text-left">
+                <div className="absolute -top-4 md:-top-8 left-1/2 lg:left-0 -translate-x-1/2 lg:translate-x-0 w-20 md:w-24 h-20 md:h-24 bg-gold/10 rounded-full blur-2xl"></div>
+                <div className="inline-flex items-center gap-2 px-6 py-2 bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-full mb-6">
+                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                  <span className="text-primary font-bold text-xs md:text-sm tracking-wider uppercase">Our Story</span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-bold mb-4 md:mb-6 leading-tight bg-gradient-to-r from-primary via-secondary to-gold bg-clip-text text-transparent" data-testid="about-title">
                   15 Years of Excellence in Beauty
                 </h2>
-                <p className="text-gray-600 text-lg mb-6 leading-relaxed" data-testid="about-description-1">
+                <p className="text-gray-600 text-sm sm:text-base md:text-lg mb-4 md:mb-6 leading-relaxed" data-testid="about-description-1">
                   Luxe Beauty has been transforming lives through exceptional beauty services since 2009. Our commitment to excellence, combined with cutting-edge techniques and premium products, has made us the premier destination for beauty enthusiasts.
                 </p>
-                <p className="text-gray-600 text-lg mb-8 leading-relaxed" data-testid="about-description-2">
+                <p className="text-gray-600 text-sm sm:text-base md:text-lg mb-6 md:mb-8 leading-relaxed" data-testid="about-description-2">
                   We believe that true beauty comes from confidence, and our expert team is dedicated to helping you discover and enhance your natural radiance.
                 </p>
-                <Link href="/about" className="inline-flex items-center btn-gradient px-8 py-4 rounded-full group" data-testid="about-link">
+                <Link href="/about" className="inline-flex items-center btn-gradient px-6 md:px-8 py-3 md:py-4 rounded-full group text-sm md:text-base font-bold shadow-xl" data-testid="about-link">
                   <span>Discover Our Journey</span>
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                  <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform" />
                 </Link>
               </div>
             </ScrollReveal>
             
             <ScrollReveal delay={200}>
-              <div className="story-carousel-container relative">
+              <div className="story-carousel-container relative mt-8 lg:mt-0">
                 <div className="story-slider">
                   <div className="story-slide-track">
                     {[
@@ -174,17 +178,21 @@ const Home = () => {
                       'https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400',
                       'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400',
                       'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400',
+                      'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400',
+                      'https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400',
                     ].map((img, idx) => (
-                      <div key={idx} className="story-slide">
+                      <div key={idx} className="story-slide w-64 md:w-80">
                         <div className="premium-image-frame">
-                          <img src={img} alt={`Story ${idx + 1}`} className="w-full h-80 object-cover" />
-                          <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                          <img src={img} alt={`Story ${idx + 1}`} className="w-full h-64 md:h-80 object-cover" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4 md:p-6">
+                            <p className="text-white text-sm md:text-base font-semibold">Excellence Since 2009</p>
+                          </div>
                         </div>
                       </div>
                     ))}
                   </div>
                 </div>
-                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+                <div className="absolute -bottom-4 md:-bottom-6 -right-4 md:-right-6 w-24 md:w-32 h-24 md:h-32 bg-primary/10 rounded-full blur-3xl"></div>
               </div>
             </ScrollReveal>
           </div>
@@ -279,44 +287,80 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Why Choose Us - Premium Version */}
-      <section className="py-24 bg-gradient-to-br from-secondary via-primary to-secondary text-white relative overflow-hidden" data-testid="why-choose-us-section">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gold/30 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnptMCAxMmMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnptLTEyIDBjMy4zMTQgMCA2IDIuNjg2IDYgNnMtMi42ODYgNi02IDYtNi0yLjY4Ni02LTYgMi42ODYtNiA2LTZ6IiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS1vcGFjaXR5PSIuMSIvPjwvZz48L3N2Zz4=')] opacity-20"></div>
+      {/* Why Choose Us - Ultra Premium Modern Version */}
+      <section className="py-16 md:py-32 bg-gradient-to-br from-gray-900 via-primary to-gray-900 text-white relative overflow-hidden" data-testid="why-choose-us-section">
+        <div className="absolute top-0 right-0 w-72 md:w-96 h-72 md:h-96 bg-gold/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-72 md:w-96 h-72 md:h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,215,0,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,215,0,0.05)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal>
-            <div className="text-center mb-16">
-              <span className="inline-block px-6 py-2 bg-gold/20 backdrop-blur-sm border border-gold/30 rounded-full text-gold font-semibold text-sm tracking-wider mb-6">
-                WHY LUXE BEAUTY
-              </span>
-              <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6" data-testid="why-choose-us-title">
-                The Luxe Difference
+            <div className="text-center mb-12 md:mb-20">
+              <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gold/30 to-primary/30 backdrop-blur-md border border-gold/40 rounded-full mb-6 md:mb-8">
+                <div className="w-2 h-2 bg-gold rounded-full animate-pulse"></div>
+                <span className="text-gold font-bold text-xs md:text-sm tracking-widest uppercase">Why Choose Luxe Beauty</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-playfair font-bold mb-4 md:mb-8 bg-gradient-to-r from-white via-gold to-white bg-clip-text text-transparent leading-tight px-4" data-testid="why-choose-us-title">
+                Experience The Luxe Difference
               </h2>
-              <p className="text-gray-200 text-lg max-w-3xl mx-auto" data-testid="why-choose-us-description">
-                Experience unparalleled luxury and expertise that sets us apart from the rest
+              <p className="text-gray-300 text-base md:text-xl max-w-3xl mx-auto leading-relaxed px-4" data-testid="why-choose-us-description">
+                Where innovation meets tradition, and beauty transforms into an art form. Discover why we're Mumbai's most trusted luxury beauty destination.
               </p>
             </div>
           </ScrollReveal>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 px-2 md:px-0">
             {[
-              { icon: '💎', title: 'Premium Luxury', description: 'World-class facilities with state-of-the-art equipment and premium products' },
-              { icon: '🎓', title: 'Expert Team', description: 'Certified professionals with years of experience and international training' },
-              { icon: '🛡️', title: 'Premium Hygiene', description: 'Hospital-grade sterilization and safety protocols for your peace of mind' },
-              { icon: '🛋️', title: 'Ultimate Comfort', description: 'Luxurious ambiance designed for relaxation and rejuvenation' },
+              { 
+                icon: '💎', 
+                title: 'Premium Luxury', 
+                description: 'World-class facilities with state-of-the-art equipment and premium international products',
+                stat: '5-Star',
+                statLabel: 'Rated Facility'
+              },
+              { 
+                icon: '🎓', 
+                title: 'Expert Team', 
+                description: 'Certified professionals with years of experience and international training from Paris & London',
+                stat: '15+',
+                statLabel: 'Years Experience'
+              },
+              { 
+                icon: '🛡️', 
+                title: 'Premium Hygiene', 
+                description: 'Hospital-grade sterilization and safety protocols ensuring your complete peace of mind',
+                stat: '100%',
+                statLabel: 'Safety Standards'
+              },
+              { 
+                icon: '✨', 
+                title: 'Ultimate Comfort', 
+                description: 'Luxurious ambiance designed for complete relaxation and rejuvenation of body and soul',
+                stat: '50K+',
+                statLabel: 'Happy Clients'
+              },
             ].map((item, index) => (
               <ScrollReveal key={item.title} delay={index * 100}>
-                <div className="premium-glass-card group" data-testid={`why-choose-us-item-${index}`}>
-                  <div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300">{item.icon}</div>
-                  <h3 className="text-xl font-playfair font-bold mb-4 text-gold" data-testid={`why-choose-us-item-title-${index}`}>
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-200 leading-relaxed" data-testid={`why-choose-us-item-description-${index}`}>
-                    {item.description}
-                  </p>
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-gold via-primary to-gold transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-8 text-center group hover:bg-white/10 hover:border-gold/40 transition-all duration-500 hover:-translate-y-2 h-full" data-testid={`why-choose-us-item-${index}`}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-gold/0 via-gold/0 to-gold/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  <div className="relative z-10">
+                    <div className="text-4xl md:text-5xl mb-4 md:mb-6 transform group-hover:scale-125 group-hover:rotate-12 transition-transform duration-500">{item.icon}</div>
+                    
+                    <div className="mb-3 md:mb-4">
+                      <div className="text-2xl md:text-3xl font-bold text-gold font-playfair">{item.stat}</div>
+                      <div className="text-xs md:text-sm text-gray-400">{item.statLabel}</div>
+                    </div>
+                    
+                    <h3 className="text-lg md:text-xl font-playfair font-bold mb-3 md:mb-4 text-white group-hover:text-gold transition-colors duration-300" data-testid={`why-choose-us-item-title-${index}`}>
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-300 text-sm md:text-base leading-relaxed" data-testid={`why-choose-us-item-description-${index}`}>
+                      {item.description}
+                    </p>
+                  </div>
+                  
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
                 </div>
               </ScrollReveal>
             ))}
