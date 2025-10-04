@@ -1,0 +1,104 @@
+:root {
+  /* Luxury Salon Brand Colors - Premium Theme */
+  --primary: #6A1B4D; /* Deep Burgundy */
+  --secondary: #2C2C2C; /* Charcoal Gray */
+  --accent: #E9AFA3; /* Rose Gold */
+  --gold: #FFD700; /* Metallic Gold */
+  --bg-light: #FDF0F0; /* Soft Blush background for cards */
+  --text-dark: #2C2C2C; /* Dark text for contrast */
+  
+  /* Base Theme Colors */
+  --background: #2C2C2C; /* Dark overall background */
+  --foreground: #FFF8F0; /* Light text */
+  --card: #FDF0F0; /* Card background */
+  --card-foreground: #2C2C2C; /* Card text */
+  --popover: #FDF0F0;
+  --popover-foreground: #2C2C2C;
+  --primary-foreground: #FFF8F0;
+  --secondary-foreground: #FFF8F0;
+  --muted: #E9E0DF;
+  --muted-foreground: #7D7D7D;
+  --border: #E9E0DF;
+  --input: #FDF0F0;
+  --ring: #FFD700;
+  --destructive: #FF6B6B; /* Coral red for errors */
+  --destructive-foreground: #FFF8F0;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: #2C2C2C;
+  --foreground: #FFF8F0;
+  --card: #2C2C2C;
+  --card-foreground: #FFF8F0;
+  --popover: #2C2C2C;
+  --popover-foreground: #FFF8F0;
+  --primary: #6A1B4D;
+  --primary-foreground: #FFF8F0;
+  --secondary: #2C2C2C;
+  --secondary-foreground: #FFF8F0;
+  --muted: #3A3A3A;
+  --muted-foreground: #CFCFCF;
+  --accent: #E9AFA3;
+  --accent-foreground: #2C2C2C;
+  --destructive: #FF6B6B;
+  --destructive-foreground: #FFF8F0;
+  --border: #3A3A3A;
+  --input: #3A3A3A;
+  --ring: #FFD700;
+}
+
+/* Update Hero Gradient Overlay */
+.hero-gradient {
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF9F80 100%); /* Coral-Peach gradient */
+}
+
+/* Update Buttons */
+.btn-gradient {
+  @apply bg-gradient-to-r from-[#FF6B6B] to-[#FF9F80] text-foreground font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:shadow-xl relative overflow-hidden;
+}
+
+.btn-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--accent) 100%);
+  transition: left 0.5s ease;
+  z-index: 0;
+}
+
+.btn-gradient:hover::before {
+  left: 0;
+}
+
+.btn-gradient > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Service Card Shadow with new colors */
+.service-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3); /* subtle gold shadow */
+}
+
+/* Scroll progress bar gradient */
+.scroll-progress {
+  background: linear-gradient(90deg, var(--gold) 0%, var(--primary) 100%);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+}
+
+/* Spinner */
+.spinner {
+  border-top: 4px solid var(--primary);
+}
