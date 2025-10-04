@@ -1,57 +1,56 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* Luxury Salon Brand Colors - Premium Theme */
-  --primary: #6A1B4D; /* Deep Burgundy */
-  --secondary: #2C2C2C; /* Charcoal Gray */
-  --accent: #E9AFA3; /* Rose Gold */
-  --gold: #FFD700; /* Metallic Gold */
-  --bg-light: #FDF0F0; /* Soft Blush background for cards */
-  --text-dark: #2C2C2C; /* Dark text for contrast */
+  /* Salon Brand Colors - Premium Theme */
+  --primary: hsl(280, 60%, 35%);
+  --secondary: hsl(260, 50%, 25%);
+  --accent: hsl(40, 95%, 60%);
+  --gold: hsl(42, 88%, 55%);
+  --bg-light: hsl(40, 40%, 97%);
+  --text-dark: hsl(260, 30%, 15%);
   
   /* Base Theme Colors */
-  --background: #FDF0F0; /* Light background for main app */
-  --foreground: #2C2C2C; /* Dark text */
-  --card: #FFFFFF; /* Card background */
-  --card-foreground: #2C2C2C; /* Card text */
-  --popover: #FFFFFF;
-  --popover-foreground: #2C2C2C;
-  --primary-foreground: #FFF8F0;
-  --secondary-foreground: #FFF8F0;
-  --muted: #E9E0DF;
-  --muted-foreground: #7D7D7D;
-  --border: #E9E0DF;
-  --input: #FDF0F0;
-  --ring: #FFD700;
-  --destructive: #FF6B6B; /* Coral red for errors */
-  --destructive-foreground: #FFF8F0;
+  --background: hsl(40, 40%, 97%);
+  --foreground: hsl(260, 30%, 15%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(260, 30%, 15%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(260, 30%, 15%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(260, 20%, 96%);
+  --muted-foreground: hsl(260, 10%, 46%);
+  --border: hsl(260, 15%, 90%);
+  --input: hsl(260, 15%, 90%);
+  --ring: hsl(280, 60%, 35%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(0, 0%, 98%);
   --radius: 0.75rem;
 }
 
 .dark {
-  --background: #2C2C2C;
-  --foreground: #FFF8F0;
-  --card: #2C2C2C;
-  --card-foreground: #FFF8F0;
-  --popover: #2C2C2C;
-  --popover-foreground: #FFF8F0;
-  --primary: #6A1B4D;
-  --primary-foreground: #FFF8F0;
-  --secondary: #2C2C2C;
-  --secondary-foreground: #FFF8F0;
-  --muted: #3A3A3A;
-  --muted-foreground: #CFCFCF;
-  --accent: #E9AFA3;
-  --accent-foreground: #2C2C2C;
-  --destructive: #FF6B6B;
-  --destructive-foreground: #FFF8F0;
-  --border: #3A3A3A;
-  --input: #3A3A3A;
-  --ring: #FFD700;
+  --background: hsl(222.2, 84%, 4.9%);
+  --foreground: hsl(210, 40%, 98%);
+  --card: hsl(222.2, 84%, 4.9%);
+  --card-foreground: hsl(210, 40%, 98%);
+  --popover: hsl(222.2, 84%, 4.9%);
+  --popover-foreground: hsl(210, 40%, 98%);
+  --primary: hsl(313, 52%, 40%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(217.2, 32.6%, 17.5%);
+  --secondary-foreground: hsl(210, 40%, 98%);
+  --muted: hsl(217.2, 32.6%, 17.5%);
+  --muted-foreground: hsl(215, 20.2%, 65.1%);
+  --accent: hsl(217.2, 32.6%, 17.5%);
+  --accent-foreground: hsl(210, 40%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --border: hsl(217.2, 32.6%, 17.5%);
+  --input: hsl(217.2, 32.6%, 17.5%);
+  --ring: hsl(313, 52%, 40%);
 }
 
 @layer base {
@@ -112,7 +111,7 @@
 
 /* Button gradient effects */
 .btn-gradient {
-  @apply bg-gradient-to-r from-[#FF6B6B] to-[#FF9F80] text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:shadow-xl relative overflow-hidden;
+  @apply bg-gradient-to-r from-gold via-primary to-secondary text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:shadow-2xl relative overflow-hidden;
 }
 
 .btn-gradient::before {
@@ -122,7 +121,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--accent) 100%);
+  background: linear-gradient(135deg, hsl(42, 88%, 65%) 0%, hsl(280, 60%, 45%) 100%);
   transition: left 0.5s ease;
   z-index: 0;
 }
@@ -168,7 +167,7 @@
 
 .service-card:hover {
   transform: translateY(-12px);
-  box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+  box-shadow: 0 20px 40px rgba(166, 55, 127, 0.3);
 }
 
 /* Gold border hover */
@@ -226,7 +225,7 @@
 
 /* Hero gradient overlay */
 .hero-gradient {
-  background: linear-gradient(135deg, #FF6B6B 0%, #FF9F80 100%);
+  background: linear-gradient(135deg, rgba(76, 41, 122, 0.88) 0%, rgba(115, 60, 140, 0.82) 50%, rgba(76, 41, 122, 0.85) 100%);
 }
 
 /* Parallax effect */
