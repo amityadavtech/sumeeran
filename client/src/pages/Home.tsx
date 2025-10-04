@@ -139,38 +139,38 @@ const Home = () => {
       </section>
 
       {/* About Preview Section - Premium Story Carousel */}
-      <section className="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-white via-bg-light to-white relative overflow-hidden" data-testid="about-preview-section">
-        <div className="absolute top-0 left-0 w-full h-16 sm:h-24 md:h-32 bg-gradient-to-b from-white to-transparent"></div>
-        <div className="absolute top-1/4 right-0 w-32 sm:w-48 md:w-72 h-32 sm:h-48 md:h-72 bg-gold/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 left-0 w-32 sm:w-48 md:w-72 h-32 sm:h-48 md:h-72 bg-primary/5 rounded-full blur-3xl"></div>
+      <section className="py-16 md:py-24 bg-gradient-to-b from-white via-bg-light to-white relative overflow-hidden" data-testid="about-preview-section">
+        <div className="absolute top-0 left-0 w-full h-24 md:h-32 bg-gradient-to-b from-white to-transparent"></div>
+        <div className="absolute top-1/4 right-0 w-48 md:w-72 h-48 md:h-72 bg-gold/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 left-0 w-48 md:w-72 h-48 md:h-72 bg-primary/5 rounded-full blur-3xl"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
             <ScrollReveal>
-              <div className="relative text-center lg:text-left px-2 sm:px-0">
-                <div className="absolute -top-4 md:-top-8 left-1/2 lg:left-0 -translate-x-1/2 lg:translate-x-0 w-16 sm:w-20 md:w-24 h-16 sm:h-20 md:h-24 bg-gold/10 rounded-full blur-2xl"></div>
-                <div className="inline-flex items-center gap-2 px-4 sm:px-6 py-1.5 sm:py-2 bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-full mb-4 sm:mb-6">
-                  <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-primary rounded-full animate-pulse"></div>
-                  <span className="text-primary font-bold text-xs sm:text-sm tracking-wider uppercase">Our Story</span>
+              <div className="relative text-center lg:text-left">
+                <div className="absolute -top-4 md:-top-8 left-1/2 lg:left-0 -translate-x-1/2 lg:translate-x-0 w-20 md:w-24 h-20 md:h-24 bg-gold/10 rounded-full blur-2xl"></div>
+                <div className="inline-flex items-center gap-2 px-6 py-2 bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-full mb-6">
+                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                  <span className="text-primary font-bold text-xs md:text-sm tracking-wider uppercase">Our Story</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-playfair font-bold mb-3 sm:mb-4 md:mb-6 leading-tight bg-gradient-to-r from-primary via-secondary to-gold bg-clip-text text-transparent px-2 sm:px-0" data-testid="about-title">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-bold mb-4 md:mb-6 leading-tight bg-gradient-to-r from-primary via-secondary to-gold bg-clip-text text-transparent" data-testid="about-title">
                   15 Years of Excellence in Beauty
                 </h2>
-                <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-lg mb-3 sm:mb-4 md:mb-6 leading-relaxed px-2 sm:px-0" data-testid="about-description-1">
+                <p className="text-gray-600 text-sm sm:text-base md:text-lg mb-4 md:mb-6 leading-relaxed" data-testid="about-description-1">
                   Luxe Beauty has been transforming lives through exceptional beauty services since 2009. Our commitment to excellence, combined with cutting-edge techniques and premium products, has made us the premier destination for beauty enthusiasts.
                 </p>
-                <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-lg mb-4 sm:mb-6 md:mb-8 leading-relaxed px-2 sm:px-0" data-testid="about-description-2">
+                <p className="text-gray-600 text-sm sm:text-base md:text-lg mb-6 md:mb-8 leading-relaxed" data-testid="about-description-2">
                   We believe that true beauty comes from confidence, and our expert team is dedicated to helping you discover and enhance your natural radiance.
                 </p>
-                <Link href="/about" className="inline-flex items-center btn-gradient px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-full group text-xs sm:text-sm md:text-base font-bold shadow-xl" data-testid="about-link">
+                <Link href="/about" className="inline-flex items-center btn-gradient px-6 md:px-8 py-3 md:py-4 rounded-full group text-sm md:text-base font-bold shadow-xl" data-testid="about-link">
                   <span>Discover Our Journey</span>
-                  <ArrowRight className="ml-1.5 sm:ml-2 w-3.5 sm:w-4 md:w-5 h-3.5 sm:h-4 md:h-5 group-hover:translate-x-2 transition-transform" />
+                  <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform" />
                 </Link>
               </div>
             </ScrollReveal>
             
             <ScrollReveal delay={200}>
-              <div className="story-carousel-container relative mt-6 sm:mt-8 lg:mt-0">
+              <div className="story-carousel-container relative mt-8 lg:mt-0">
                 <div className="story-slider">
                   <div className="story-slide-track">
                     {[
@@ -181,18 +181,18 @@ const Home = () => {
                       'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400',
                       'https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400',
                     ].map((img, idx) => (
-                      <div key={idx} className="story-slide w-48 sm:w-56 md:w-64 lg:w-80">
+                      <div key={idx} className="story-slide w-64 md:w-80">
                         <div className="premium-image-frame">
-                          <img src={img} alt={`Story ${idx + 1}`} className="w-full h-48 sm:h-56 md:h-64 lg:h-80 object-cover" />
-                          <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-3 sm:p-4 md:p-6">
-                            <p className="text-white text-xs sm:text-sm md:text-base font-semibold">Excellence Since 2009</p>
+                          <img src={img} alt={`Story ${idx + 1}`} className="w-full h-64 md:h-80 object-cover" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4 md:p-6">
+                            <p className="text-white text-sm md:text-base font-semibold">Excellence Since 2009</p>
                           </div>
                         </div>
                       </div>
                     ))}
                   </div>
                 </div>
-                <div className="absolute -bottom-3 sm:-bottom-4 md:-bottom-6 -right-3 sm:-right-4 md:-right-6 w-20 sm:w-24 md:w-32 h-20 sm:h-24 md:h-32 bg-primary/10 rounded-full blur-3xl"></div>
+                <div className="absolute -bottom-4 md:-bottom-6 -right-4 md:-right-6 w-24 md:w-32 h-24 md:h-32 bg-primary/10 rounded-full blur-3xl"></div>
               </div>
             </ScrollReveal>
           </div>
