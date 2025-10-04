@@ -11,7 +11,7 @@
   --gold: hsl(42, 88%, 55%);
   --bg-light: hsl(40, 40%, 97%);
   --text-dark: hsl(260, 30%, 15%);
-  
+
   /* Base Theme Colors */
   --background: hsl(40, 40%, 97%);
   --foreground: hsl(260, 30%, 15%);
@@ -254,20 +254,31 @@
 
 /* Story Carousel Animations */
 .story-carousel-container {
-  @apply relative overflow-hidden rounded-3xl;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 0.5rem 0;
 }
 
 .story-slider {
-  @apply overflow-hidden;
+  display: flex;
+  overflow: hidden;
+  position: relative;
 }
 
 .story-slide-track {
-  @apply flex gap-6;
-  animation: scroll 20s linear infinite;
+  @apply flex gap-3 sm:gap-4 md:gap-6;
+  animation: scroll 25s linear infinite;
+}
+
+@media (max-width: 640px) {
+  .story-slide-track {
+    animation: scroll 18s linear infinite;
+  }
 }
 
 .story-slide {
-  @apply flex-shrink-0 w-80;
+  flex-shrink: 0;
 }
 
 .premium-image-frame {
