@@ -8,6 +8,7 @@ import ServiceCard from '@/components/ui/ServiceCard';
 import GalleryGrid from '@/components/ui/GalleryGrid';
 import PricingCard from '@/components/ui/PricingCard';
 import HeroCarousel from '@/components/ui/HeroCarousel';
+import DealsCarousel from '@/components/ui/DealsCarousel';
 
 const Home = () => {
   const services = [
@@ -137,16 +138,18 @@ const Home = () => {
         </div>
       </section>
 
-      {/* About Preview Section */}
-      <section className="py-20 bg-white" data-testid="about-preview-section">
+      {/* About Preview Section - Premium Story Carousel */}
+      <section className="py-24 bg-gradient-to-b from-white to-bg-light relative overflow-hidden" data-testid="about-preview-section">
+        <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white to-transparent"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal>
-              <div>
-                <span className="text-primary font-semibold text-sm tracking-wider uppercase mb-4 block">
-                  Our Story
+              <div className="relative">
+                <div className="absolute -top-8 -left-8 w-24 h-24 bg-gold/10 rounded-full blur-2xl"></div>
+                <span className="inline-block px-6 py-2 bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-full text-primary font-semibold text-sm tracking-wider mb-6">
+                  OUR STORY
                 </span>
-                <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6 text-text-dark" data-testid="about-title">
+                <h2 className="text-4xl md:text-6xl font-playfair font-bold mb-6 text-text-dark bg-gradient-to-r from-primary via-secondary to-gold bg-clip-text text-transparent" data-testid="about-title">
                   15 Years of Excellence in Beauty
                 </h2>
                 <p className="text-gray-600 text-lg mb-6 leading-relaxed" data-testid="about-description-1">
@@ -155,26 +158,33 @@ const Home = () => {
                 <p className="text-gray-600 text-lg mb-8 leading-relaxed" data-testid="about-description-2">
                   We believe that true beauty comes from confidence, and our expert team is dedicated to helping you discover and enhance your natural radiance.
                 </p>
-                <Link href="/about" className="inline-flex items-center text-primary font-semibold text-lg hover:text-secondary transition-colors" data-testid="about-link">
-                  Discover Our Journey <ArrowRight className="ml-2 w-5 h-5" />
+                <Link href="/about" className="inline-flex items-center btn-gradient px-8 py-4 rounded-full group" data-testid="about-link">
+                  <span>Discover Our Journey</span>
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </Link>
               </div>
             </ScrollReveal>
             
             <ScrollReveal delay={200}>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="img-zoom-container rounded-lg overflow-hidden">
-                  <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400" alt="Salon team" className="img-zoom w-full h-64 object-cover" />
+              <div className="story-carousel-container relative">
+                <div className="story-slider">
+                  <div className="story-slide-track">
+                    {[
+                      'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400',
+                      'https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400',
+                      'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400',
+                      'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400',
+                    ].map((img, idx) => (
+                      <div key={idx} className="story-slide">
+                        <div className="premium-image-frame">
+                          <img src={img} alt={`Story ${idx + 1}`} className="w-full h-80 object-cover" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="img-zoom-container rounded-lg overflow-hidden mt-8">
-                  <img src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400" alt="Salon interior" className="img-zoom w-full h-64 object-cover" />
-                </div>
-                <div className="img-zoom-container rounded-lg overflow-hidden -mt-8">
-                  <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400" alt="Beauty treatment" className="img-zoom w-full h-64 object-cover" />
-                </div>
-                <div className="img-zoom-container rounded-lg overflow-hidden">
-                  <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400" alt="Beauty products" className="img-zoom w-full h-64 object-cover" />
-                </div>
+                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
               </div>
             </ScrollReveal>
           </div>
@@ -269,16 +279,17 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-24 bg-secondary text-white relative overflow-hidden" data-testid="why-choose-us-section">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gold/20 rounded-full blur-3xl"></div>
+      {/* Why Choose Us - Premium Version */}
+      <section className="py-24 bg-gradient-to-br from-secondary via-primary to-secondary text-white relative overflow-hidden" data-testid="why-choose-us-section">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gold/30 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnptMCAxMmMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnptLTEyIDBjMy4zMTQgMCA2IDIuNjg2IDYgNnMtMi42ODYgNi02IDYtNi0yLjY4Ni02LTYgMi42ODYtNiA2LTZ6IiBzdHJva2U9IiNGRkQ3MDAiIHN0cm9rZS1vcGFjaXR5PSIuMSIvPjwvZz48L3N2Zz4=')] opacity-20"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal>
             <div className="text-center mb-16">
-              <span className="text-gold font-semibold text-sm tracking-wider uppercase mb-4 block">
-                Why Luxe Beauty
+              <span className="inline-block px-6 py-2 bg-gold/20 backdrop-blur-sm border border-gold/30 rounded-full text-gold font-semibold text-sm tracking-wider mb-6">
+                WHY LUXE BEAUTY
               </span>
               <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6" data-testid="why-choose-us-title">
                 The Luxe Difference
@@ -289,7 +300,7 @@ const Home = () => {
             </div>
           </ScrollReveal>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { icon: '💎', title: 'Premium Luxury', description: 'World-class facilities with state-of-the-art equipment and premium products' },
               { icon: '🎓', title: 'Expert Team', description: 'Certified professionals with years of experience and international training' },
@@ -297,14 +308,15 @@ const Home = () => {
               { icon: '🛋️', title: 'Ultimate Comfort', description: 'Luxurious ambiance designed for relaxation and rejuvenation' },
             ].map((item, index) => (
               <ScrollReveal key={item.title} delay={index * 100}>
-                <div className="text-center" data-testid={`why-choose-us-item-${index}`}>
-                  <div className="text-4xl mb-4">{item.icon}</div>
-                  <h3 className="text-xl font-playfair font-bold mb-3" data-testid={`why-choose-us-item-title-${index}`}>
+                <div className="premium-glass-card group" data-testid={`why-choose-us-item-${index}`}>
+                  <div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300">{item.icon}</div>
+                  <h3 className="text-xl font-playfair font-bold mb-4 text-gold" data-testid={`why-choose-us-item-title-${index}`}>
                     {item.title}
                   </h3>
-                  <p className="text-gray-300 leading-relaxed" data-testid={`why-choose-us-item-description-${index}`}>
+                  <p className="text-gray-200 leading-relaxed" data-testid={`why-choose-us-item-description-${index}`}>
                     {item.description}
                   </p>
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-gold via-primary to-gold transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
                 </div>
               </ScrollReveal>
             ))}
@@ -314,6 +326,32 @@ const Home = () => {
 
       {/* Counter Section */}
       <CounterSection />
+
+      {/* Deals & Offers - Premium Carousel */}
+      <section className="py-24 bg-white relative overflow-hidden" data-testid="deals-section">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <span className="inline-block px-6 py-2 bg-gold/10 backdrop-blur-sm border border-gold/20 rounded-full text-primary font-semibold text-sm tracking-wider mb-6">
+                EXCLUSIVE DEALS
+              </span>
+              <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6 text-text-dark">
+                Limited Time Offers
+              </h2>
+              <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+                Don't miss out on our exclusive deals and premium packages designed just for you
+              </p>
+            </div>
+          </ScrollReveal>
+          
+          <ScrollReveal delay={200}>
+            <DealsCarousel />
+          </ScrollReveal>
+        </div>
+      </section>
 
       {/* Testimonials */}
       <TestimonialCarousel />

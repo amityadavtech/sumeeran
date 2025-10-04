@@ -74,7 +74,15 @@ const HeroCarousel = () => {
             backgroundPosition: 'center',
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 via-primary/80 to-secondary/70" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-secondary/85 to-gold/80" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_transparent_0%,_rgba(0,0,0,0.4)_100%)]" />
+          {/* Animated particles effect */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute w-2 h-2 bg-gold/30 rounded-full animate-float" style={{ top: '20%', left: '10%', animationDelay: '0s' }} />
+            <div className="absolute w-3 h-3 bg-gold/20 rounded-full animate-float" style={{ top: '60%', left: '80%', animationDelay: '1s' }} />
+            <div className="absolute w-2 h-2 bg-gold/40 rounded-full animate-float" style={{ top: '40%', left: '30%', animationDelay: '2s' }} />
+            <div className="absolute w-3 h-3 bg-gold/25 rounded-full animate-float" style={{ top: '80%', left: '60%', animationDelay: '1.5s' }} />
+          </div>
         </div>
       ))}
 
