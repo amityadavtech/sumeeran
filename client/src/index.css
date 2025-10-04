@@ -216,19 +216,6 @@
   }
 }
 
-/* Premium Background Position Animation */
-.bg-size-200 {
-  background-size: 200%;
-}
-
-.bg-pos-0 {
-  background-position: 0%;
-}
-
-.bg-pos-100 {
-  background-position: 100%;
-}
-
 /* Hero gradient overlay */
 .hero-gradient {
   background: linear-gradient(135deg, rgba(76, 41, 122, 0.88) 0%, rgba(115, 60, 140, 0.82) 50%, rgba(76, 41, 122, 0.85) 100%);
