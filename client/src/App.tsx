@@ -26,7 +26,7 @@ import Booking from "./pages/Booking";
 import Contact from "./pages/Contact";
 import NotFound from "@/pages/not-found";
 import FloatingActions from "./components/ui/FloatingActions";
-
+import ScrollToTop from "./components/ui/ScrollToTop";
 // Scroll Progress Bar Component
 function ScrollProgress() {
   useEffect(() => {
@@ -51,6 +51,7 @@ function Router() {
     <div className="min-h-screen bg-background">
       <ScrollProgress />
       <Navbar />
+           <ScrollToTop />
       <main>
         <Switch>
           <Route path="/" component={Home} />
