@@ -65,7 +65,7 @@ const Bridal = () => {
   return (
     <div className="min-h-screen pt-20" data-testid="bridal-services-page">
       {/* Hero Section */}
-      <section 
+      <section
         className="relative py-32 flex items-center justify-center overflow-hidden parallax"
         style={{
           backgroundImage: 'url(https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080)'
@@ -113,13 +113,13 @@ const Bridal = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {packages.map((pkg, index) => (
               <ScrollReveal key={pkg.title} delay={index * 100}>
-                <div 
+                <div
                   className="bg-bg-light rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
                   data-testid={`bridal-package-${index}`}
                 >
                   <div className="img-zoom-container h-64">
-                    <img 
-                      src={pkg.image} 
+                    <img
+                      src={pkg.image}
                       alt={pkg.title}
                       className="img-zoom w-full h-full object-cover"
                       data-testid={`bridal-package-image-${index}`}
@@ -128,27 +128,27 @@ const Bridal = () => {
                   <div className="p-8">
                     <div className="flex justify-between items-start mb-4">
                       <div>
-                        <h3 
+                        <h3
                           className="text-2xl font-playfair font-bold text-text-dark mb-1"
                           data-testid={`bridal-package-title-${index}`}
                         >
                           {pkg.title}
                         </h3>
-                        <span 
+                        <span
                           className="text-sm text-gray-500"
                           data-testid={`bridal-package-duration-${index}`}
                         >
                           {pkg.duration}
                         </span>
                       </div>
-                      <span 
+                      <span
                         className="text-primary font-semibold text-lg"
                         data-testid={`bridal-package-price-${index}`}
                       >
                         {pkg.price}
                       </span>
                     </div>
-                    <p 
+                    <p
                       className="text-gray-600 mb-6 leading-relaxed"
                       data-testid={`bridal-package-description-${index}`}
                     >
@@ -158,7 +158,7 @@ const Bridal = () => {
                       <h4 className="font-semibold text-text-dark mb-3">Package Includes:</h4>
                       <ul className="grid grid-cols-2 gap-2">
                         {pkg.features.map((feature, featureIndex) => (
-                          <li 
+                          <li
                             key={featureIndex}
                             className="text-sm text-gray-600 flex items-center"
                             data-testid={`bridal-package-feature-${index}-${featureIndex}`}
@@ -170,7 +170,7 @@ const Bridal = () => {
                       </ul>
                     </div>
                     <Link href="/booking">
-                      <Button 
+                      <Button
                         className="w-full bg-primary text-white hover:bg-secondary"
                         data-testid={`bridal-package-book-${index}`}
                       >
@@ -205,20 +205,20 @@ const Bridal = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {bridalServices.map((service, index) => (
               <ScrollReveal key={service.title} delay={index * 100}>
-                <div 
+                <div
                   className="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300"
                   data-testid={`bridal-feature-${index}`}
                 >
                   <div className="w-16 h-16 mx-auto mb-6 bg-gray-50 rounded-full flex items-center justify-center">
                     {service.icon}
                   </div>
-                  <h3 
+                  <h3
                     className="text-xl font-playfair font-bold mb-4 text-text-dark"
                     data-testid={`bridal-feature-title-${index}`}
                   >
                     {service.title}
                   </h3>
-                  <p 
+                  <p
                     className="text-gray-600 leading-relaxed"
                     data-testid={`bridal-feature-description-${index}`}
                   >
@@ -250,7 +250,7 @@ const Bridal = () => {
 
           <div className="relative">
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary opacity-20"></div>
-            
+
             <div className="space-y-12">
               {[
                 {
@@ -280,27 +280,26 @@ const Bridal = () => {
                 },
               ].map((step, index) => (
                 <ScrollReveal key={step.title} delay={index * 100}>
-                  <div 
-                    className={`relative flex items-center ${
-                      index % 2 === 0 ? 'justify-start' : 'justify-end'
-                    }`}
+                  <div
+                    className={`relative flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'
+                      }`}
                     data-testid={`timeline-step-${index}`}
                   >
                     <div className={`w-5/12 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
                       <div className="bg-bg-light rounded-2xl p-6">
-                        <div 
+                        <div
                           className="text-sm font-bold text-primary mb-2"
                           data-testid={`timeline-time-${index}`}
                         >
                           {step.time}
                         </div>
-                        <h3 
+                        <h3
                           className="text-xl font-playfair font-bold mb-3 text-text-dark"
                           data-testid={`timeline-step-title-${index}`}
                         >
                           {step.title}
                         </h3>
-                        <p 
+                        <p
                           className="text-gray-600"
                           data-testid={`timeline-step-description-${index}`}
                         >
@@ -308,7 +307,7 @@ const Bridal = () => {
                         </p>
                       </div>
                     </div>
-                    
+
                     <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gold rounded-full border-4 border-white shadow-lg"></div>
                   </div>
                 </ScrollReveal>
@@ -342,12 +341,12 @@ const Bridal = () => {
               'https://images.unsplash.com/photo-1582139329536-e7284fece509?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800',
             ].map((image, index) => (
               <ScrollReveal key={index} delay={index * 100}>
-                <div 
+                <div
                   className="img-zoom-container rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
                   data-testid={`bridal-gallery-${index}`}
                 >
-                  <img 
-                    src={image} 
+                  <img
+                    src={image}
                     alt={`Bridal look ${index + 1}`}
                     className="img-zoom w-full h-96 object-cover"
                     data-testid={`bridal-gallery-image-${index}`}
@@ -379,7 +378,7 @@ const Bridal = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/booking">
-                <Button 
+                <Button
                   className="bg-white text-secondary px-10 py-4 rounded-full font-semibold text-lg hover:bg-gold hover:text-white transition-all duration-300 shadow-xl"
                   data-testid="bridal-consultation-button"
                 >

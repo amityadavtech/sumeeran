@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'wouter';
-import { Scissors, Sparkles, HandHeart, Paintbrush, Leaf, Crown, ArrowRight } from 'lucide-react';
+import { Scissors, Sparkles, HandHeart, Paintbrush, Leaf, Crown, ArrowRight, UserCheck, Award, ShieldCheck, Coffee } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import ServiceCard from '@/components/ui/ServiceCard';
@@ -87,14 +87,14 @@ const Services = () => {
     { id: 'bridal', label: 'Bridal' },
   ];
 
-  const filteredServices = activeFilter === 'all' 
-    ? services 
+  const filteredServices = activeFilter === 'all'
+    ? services
     : services.filter(service => service.category === activeFilter);
 
   return (
     <div className="min-h-screen pt-20" data-testid="services-page">
       {/* Hero Section */}
-      <section 
+      <section
         className="relative py-32 flex items-center justify-center overflow-hidden parallax"
         style={{
           backgroundImage: 'url(https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080)'
@@ -104,10 +104,10 @@ const Services = () => {
         <div className="hero-gradient absolute inset-0"></div>
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
           <ScrollReveal>
-            <span className="inline-block px-6 py-2 bg-gold/20 backdrop-blur-sm border border-gold/30 rounded-full text-gold font-semibold text-sm tracking-wider mb-6">
+            <span className="inline-block px-6 py-2 bg-gold/20 backdrop-blur-sm border border-gold/30 rounded-full text-text-dark font-semibold text-sm tracking-wider mb-6">
               OUR SERVICES
             </span>
-            <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6" data-testid="services-hero-title">
+            <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6 text-text-dark" data-testid="services-hero-title">
               Explore Our Services
             </h1>
             <p className="text-xl text-gray-100 max-w-2xl mx-auto" data-testid="services-hero-description">
@@ -126,11 +126,10 @@ const Services = () => {
                 <button
                   key={category.id}
                   onClick={() => setActiveFilter(category.id)}
-                  className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${
-                    activeFilter === category.id
+                  className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${activeFilter === category.id
                       ? 'bg-primary text-white shadow-lg'
                       : 'bg-bg-light text-gray-600 hover:bg-primary hover:text-white'
-                  }`}
+                    }`}
                   data-testid={`filter-button-${category.id}`}
                 >
                   {category.label}
@@ -142,70 +141,77 @@ const Services = () => {
       </section>
 
       {/* Services Grid */}
-      <section className="py-20 bg-bg-light" data-testid="services-grid">
+      <section className="py-16 sm:py-20 bg-bg-light" data-testid="services-grid">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {filteredServices.map((service, index) => (
               <div key={service.id} className="group">
                 <ScrollReveal delay={index * 100}>
-                  <div className="service-card bg-white rounded-2xl overflow-hidden shadow-lg h-full">
-                    <div className="img-zoom-container h-64">
-                      <img 
-                        src={service.image} 
+                  <div className="service-card bg-white rounded-2xl overflow-hidden shadow-lg h-full flex flex-col">
+                    {/* Image */}
+                    <div className="img-zoom-container h-48 sm:h-56 md:h-64 lg:h-64">
+                      <img
+                        src={service.image}
                         alt={service.title}
                         className="img-zoom w-full h-full object-cover"
                         data-testid={`service-image-${service.id}`}
                       />
                     </div>
-                    
-                    <div className="p-8 flex flex-col h-full">
-                      <div className={`w-14 h-14 ${service.iconColor} rounded-full flex items-center justify-center mb-4`}>
-                        <service.icon className="text-2xl" />
+
+                    {/* Content */}
+                    <div className="p-4 sm:p-6 md:p-8 flex flex-col flex-1">
+                      {/* Icon */}
+                      <div className={`w-12 h-12 sm:w-14 sm:h-14 ${service.iconColor} rounded-full flex items-center justify-center mb-3 sm:mb-4`}>
+                        <service.icon className="text-xl sm:text-2xl" />
                       </div>
-                      
-                      <h3 
-                        className="text-2xl font-playfair font-bold mb-3 text-text-dark"
+
+                      {/* Title */}
+                      <h3
+                        className="text-xl sm:text-2xl font-playfair font-bold mb-2 sm:mb-3 text-text-dark"
                         data-testid={`service-title-${service.id}`}
                       >
                         {service.title}
                       </h3>
-                      
-                      <p 
-                        className="text-gray-600 mb-6 leading-relaxed flex-grow"
+
+                      {/* Description */}
+                      <p
+                        className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed flex-grow"
                         data-testid={`service-description-${service.id}`}
                       >
                         {service.description}
                       </p>
 
-                      <div className="mb-6">
-                        <h4 className="font-semibold text-text-dark mb-3">What's Included:</h4>
-                        <ul className="space-y-1">
+                      {/* Features */}
+                      <div className="mb-4 sm:mb-6">
+                        <h4 className="font-semibold text-text-dark mb-2 sm:mb-3 text-sm sm:text-base">What's Included:</h4>
+                        <ul className="space-y-1 text-sm sm:text-base">
                           {service.features.map((feature, featureIndex) => (
-                            <li 
-                              key={featureIndex} 
-                              className="text-sm text-gray-600 flex items-center"
+                            <li
+                              key={featureIndex}
+                              className="flex items-center"
                               data-testid={`service-feature-${service.id}-${featureIndex}`}
                             >
-                              <span className="w-2 h-2 bg-primary rounded-full mr-3 flex-shrink-0"></span>
+                              <span className="w-2 h-2 bg-primary rounded-full mr-2 sm:mr-3 flex-shrink-0"></span>
                               {feature}
                             </li>
                           ))}
                         </ul>
                       </div>
-                      
-                      <div className="flex gap-3">
+
+                      {/* Buttons */}
+                      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-auto">
                         <Link href={service.href} className="flex-1">
-                          <Button 
-                            className="w-full bg-primary text-white hover:bg-secondary"
+                          <Button
+                            className="w-full sm:w-auto bg-primary text-white hover:bg-secondary"
                             data-testid={`service-details-button-${service.id}`}
                           >
                             View Details
                           </Button>
                         </Link>
-                        <Link href="/booking">
-                          <Button 
-                            variant="outline" 
-                            className="border-primary text-primary hover:bg-primary hover:text-white"
+                        <Link href="/booking" className="flex-1 sm:flex-none">
+                          <Button
+                            variant="outline"
+                            className="w-full sm:w-auto border-primary text-primary hover:bg-primary hover:text-white"
                             data-testid={`service-book-button-${service.id}`}
                           >
                             Book Now
@@ -221,76 +227,78 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Service Features */}
-      <section className="py-24 bg-white" data-testid="service-features">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal>
-            <div className="text-center mb-16">
-              <span className="text-primary font-semibold text-sm tracking-wider uppercase mb-4 block">
-                Why Choose Our Services
-              </span>
-              <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6 text-text-dark" data-testid="features-title">
-                Premium Service Standards
-              </h2>
-              <p className="text-gray-600 text-lg max-w-3xl mx-auto" data-testid="features-description">
-                Every service is delivered with the highest standards of quality, hygiene, and customer care
-              </p>
-            </div>
-          </ScrollReveal>
 
-          <div className="grid md:grid-cols-3 gap-8">
+      {/* Service Features */}
+      <section
+        className="relative py-20 bg-[#f6eee0] overflow-hidden"
+        data-testid="why-choose-us-section"
+      >
+        {/* Decorative motion blobs */}
+        <div className="absolute -top-20 -right-20 w-72 h-72 bg-gradient-to-br from-[#e4b7a0]/50 to-[#c38370]/30 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute -bottom-20 -left-20 w-72 h-72 bg-gradient-to-br from-[#a45c40]/40 to-[#e4b7a0]/20 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+
+        {/* Main Container */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          {/* Section Header */}
+          <div className="mb-12">
+            <span className="inline-block px-6 py-2 mb-4 text-xs md:text-sm font-bold tracking-widest uppercase text-[#a45c40] bg-[#e4b7a0]/30 rounded-full animate-pulse-slow">
+              Why Choose Sumeeran Salon & Academy
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold text-[#a45c40] mb-4 leading-tight">
+              Experience The Luxe Difference
+            </h2>
+            <p className="text-[#5a4631] text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+              Where innovation meets tradition and beauty transforms into an art form. Discover why we're Mumbai's most trusted luxury destination.
+            </p>
+          </div>
+
+          {/* Feature Grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
             {[
               {
-                icon: '🏆',
-                title: 'Premium Products',
-                description: 'We use only the finest, internationally acclaimed beauty products and tools for all treatments.',
+                icon: <Award className="mx-auto text-[#c38370] w-12 h-12 md:w-16 md:h-16" />,
+                title: 'Premium Luxury',
+                description: 'World-class facilities with state-of-the-art equipment and premium international products.',
               },
               {
-                icon: '🧑‍⚕️',
-                title: 'Expert Professionals',
-                description: 'Our team consists of certified beauty experts with extensive training and years of experience.',
+                icon: <UserCheck className="mx-auto text-[#c38370] w-12 h-12 md:w-16 md:h-16" />,
+                title: 'Expert Team',
+                description: 'Certified professionals with years of experience and international training from Paris & London.',
               },
               {
-                icon: '🛡️',
-                title: 'Hygiene Standards',
-                description: 'Hospital-grade sterilization and safety protocols ensure your health and safety at all times.',
+                icon: <ShieldCheck className="mx-auto text-[#c38370] w-12 h-12 md:w-16 md:h-16" />,
+                title: 'Hygiene & Safety',
+                description: 'Hospital-grade sterilization and safety protocols ensuring your complete peace of mind.',
               },
               {
-                icon: '💎',
-                title: 'Luxurious Experience',
-                description: 'Every visit is designed to be a luxurious, relaxing experience in our premium facilities.',
+                icon: <Coffee className="mx-auto text-[#c38370] w-12 h-12 md:w-16 md:h-16" />,
+                title: 'Ultimate Comfort',
+                description: 'Luxurious ambiance designed for complete relaxation and rejuvenation of body and soul.',
               },
-              {
-                icon: '📞',
-                title: 'Personalized Care',
-                description: 'Each treatment is customized to your unique needs, preferences, and skin/hair type.',
-              },
-              {
-                icon: '🎯',
-                title: 'Guaranteed Results',
-                description: 'We stand behind our work with a satisfaction guarantee and follow-up care support.',
-              },
-            ].map((feature, index) => (
-              <ScrollReveal key={feature.title} delay={index * 100}>
-                <div 
-                  className="text-center p-6 rounded-2xl bg-bg-light hover:shadow-lg transition-all duration-300"
-                  data-testid={`feature-${index}`}
-                >
-                  <div className="text-4xl mb-4">{feature.icon}</div>
-                  <h3 
-                    className="text-xl font-playfair font-bold mb-3 text-text-dark"
-                    data-testid={`feature-title-${index}`}
-                  >
-                    {feature.title}
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="relative bg-white/10 backdrop-blur-lg rounded-3xl p-6 md:p-8 text-center group hover:-translate-y-2 hover:shadow-xl transition-transform duration-500"
+              >
+                {/* Hover Glow */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#e4b7a0]/0 via-[#c38370]/10 to-[#a45c40]/0 opacity-0 group-hover:opacity-70 transition-opacity duration-500"></div>
+
+                {/* Content */}
+                <div className="relative z-10 space-y-4">
+                  <div className="transform group-hover:scale-110 transition-transform duration-500">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-playfair font-bold text-[#c38370] mb-2 group-hover:text-[#a45c40] transition-colors duration-300">
+                    {item.title}
                   </h3>
-                  <p 
-                    className="text-gray-600 leading-relaxed"
-                    data-testid={`feature-description-${index}`}
-                  >
-                    {feature.description}
+                  <p className="text-[#5a4631] text-sm md:text-base leading-relaxed">
+                    {item.description}
                   </p>
                 </div>
-              </ScrollReveal>
+
+                {/* Bottom animated underline */}
+                <div className="absolute bottom-4 left-1/2 w-0 h-1 bg-gradient-to-r from-[#e4b7a0] via-[#c38370] to-[#a45c40] rounded-full group-hover:w-3/4 transition-all duration-700 -translate-x-1/2"></div>
+              </div>
             ))}
           </div>
         </div>
@@ -308,7 +316,7 @@ const Services = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/booking">
-                <Button 
+                <Button
                   className="bg-white text-primary px-10 py-4 rounded-full font-semibold text-lg hover:bg-gold hover:text-white transition-all duration-300 shadow-xl"
                   data-testid="cta-book-button"
                 >

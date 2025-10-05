@@ -1,0 +1,136 @@
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { useMediaQuery } from '@/hooks/use-mobile';
+
+const StoryCarousel = () => {
+  const [isPaused, setIsPaused] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
+  const images = [
+    'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400',
+    'https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400',
+    'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400',
+    'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400',
+    'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400'
+  ];
+
+  // Triple the images for smoother infinite scroll
+  const allImages = [...images, ...images, ...images];
+
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer || isPaused) return;
+
+    let animationFrameId: number;
+    let startTime: number;
+    const duration = 40000; // 40 seconds for one complete scroll (slower for better mobile experience)
+
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = (timestamp - startTime) % duration;
+      const percentage = (progress / duration) * 100;
+      
+      const totalWidth = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+      const newScrollLeft = (percentage / 100) * totalWidth;
+      
+      // Smooth scroll to new position
+      scrollContainer.scrollLeft = newScrollLeft;
+
+      // Reset when reaching middle set of images
+      if (scrollContainer.scrollLeft >= (totalWidth * 0.66)) {
+        startTime = timestamp;
+        scrollContainer.scrollLeft = totalWidth * 0.33;
+      }
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
+  }, [isPaused]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsPaused(true);
+    setTouchStart(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    setIsPaused(false);
+    setTouchStart(0);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!touchStart) return;
+    
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer) return;
+
+    const touchDelta = touchStart - e.touches[0].clientX;
+    scrollContainer.scrollLeft += touchDelta / 2; // Reduced sensitivity for smoother touch scrolling
+    setTouchStart(e.touches[0].clientX);
+  };
+
+  return (
+    <div className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-lg md:shadow-2xl bg-gradient-to-r from-primary/5 via-transparent to-primary/5">
+      {/* Gradient overlays - adjusted for mobile */}
+      <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-0.5 md:h-1 bg-gradient-to-r from-primary/20 via-gold/20 to-primary/20"></div>
+      <div className="absolute bottom-0 left-0 w-full h-0.5 md:h-1 bg-gradient-to-r from-primary/20 via-gold/20 to-primary/20"></div>
+
+      <div
+        ref={scrollContainerRef}
+        className="flex gap-3 md:gap-6 overflow-x-hidden py-4 md:py-8 px-2 md:px-4 transition-all duration-300 touch-pan-x"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        {allImages.map((img, idx) => (
+          <div
+            key={idx}
+            className="flex-none w-[250px] md:w-[300px] transform transition-all duration-500 hover:scale-[1.02] md:hover:scale-105"
+          >
+            <div className="relative group overflow-hidden rounded-lg md:rounded-xl shadow-md md:shadow-lg">
+              {/* Image */}
+              <img
+                src={img}
+                alt={`Story Image ${idx + 1}`}
+                className="w-full h-[300px] md:h-[400px] object-cover transform transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+              />
+              
+              {/* Mobile-friendly overlay gradient */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/50 opacity-30 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              {/* Shine effect - visible on capable devices */}
+              <div className="hidden md:block absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                <div className="absolute inset-0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1500 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+              </div>
+
+              {/* Responsive border glow */}
+              <div className="absolute inset-0 rounded-lg md:rounded-xl border border-primary/10 group-hover:border-primary/30 transition-colors duration-300"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Touch indicator - only visible on touch devices */}
+      <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-xs text-gray-500 opacity-50 md:hidden">
+        Swipe to explore
+      </div>
+    </div>
+  );
+};
+
+export default StoryCarousel;

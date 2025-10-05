@@ -30,10 +30,10 @@ const Gallery = () => {
         <div className="hero-gradient absolute inset-0"></div>
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
           <ScrollReveal>
-            <span className="inline-block px-6 py-2 bg-gold/20 backdrop-blur-sm border border-gold/30 rounded-full text-gold font-semibold text-sm tracking-wider mb-6">
+            <span className="inline-block px-6 py-2 bg-gold/20 backdrop-blur-sm border border-gold/30 rounded-full text-text-dark  font-semibold text-sm tracking-wider mb-6">
               OUR PORTFOLIO
             </span>
-            <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6" data-testid="gallery-hero-title">
+            <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6 text-text-dark" data-testid="gallery-hero-title">
               Beauty Gallery
             </h1>
             <p className="text-xl text-gray-100 max-w-2xl mx-auto" data-testid="gallery-hero-description">

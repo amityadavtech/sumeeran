@@ -2,8 +2,34 @@ import { Link } from 'wouter';
 import { ArrowRight, Scissors, Sparkles, Droplets, Wind } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Hair = () => {
+
+
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      const images = containerRef.current.querySelectorAll(".img-zoom-container");
+
+      gsap.from(images, {
+        opacity: 0,
+        y: 50,
+        stagger: 0.3, // delay between each image
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%", // start when container top hits 80% of viewport
+          end: "bottom 20%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    }
+  }, []);
   const services = [
     {
       title: 'Hair Cutting & Styling',
@@ -51,7 +77,7 @@ const Hair = () => {
   return (
     <div className="min-h-screen pt-20" data-testid="hair-services-page">
       {/* Hero Section */}
-      <section 
+      <section
         className="relative py-32 flex items-center justify-center overflow-hidden parallax"
         style={{
           backgroundImage: 'url(https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080)'
@@ -62,16 +88,16 @@ const Hair = () => {
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
           <ScrollReveal>
             <div className="mb-6">
-              <Scissors className="text-6xl text-gold mx-auto mb-4" />
+              <Scissors className="text-6xl text-text-dark mx-auto mb- " />
             </div>
-            <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6" data-testid="hair-hero-title">
+            <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6 text-text-dark" data-testid="hair-hero-title">
               Transform Your Hair
             </h1>
             <p className="text-xl text-gray-100 max-w-2xl mx-auto mb-8" data-testid="hair-hero-description">
               From precision cuts to vibrant colors, discover the artistry of professional hair care
             </p>
             <Link href="/booking">
-              <Button className="btn-gradient text-lg px-8 py-4" data-testid="hair-book-button">
+              <Button className="bg-gradient-to-r from-[#e4b7a0] to-[#c38370] text-lg px-8 py-4" data-testid="hair-book-button">
                 <span>Book Hair Service</span>
               </Button>
             </Link>
@@ -99,13 +125,13 @@ const Hair = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {services.map((service, index) => (
               <ScrollReveal key={service.title} delay={index * 100}>
-                <div 
+                <div
                   className="bg-bg-light rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
                   data-testid={`hair-service-${index}`}
                 >
                   <div className="img-zoom-container h-64">
-                    <img 
-                      src={service.image} 
+                    <img
+                      src={service.image}
                       alt={service.title}
                       className="img-zoom w-full h-full object-cover"
                       data-testid={`hair-service-image-${index}`}
@@ -113,20 +139,20 @@ const Hair = () => {
                   </div>
                   <div className="p-8">
                     <div className="flex justify-between items-start mb-4">
-                      <h3 
+                      <h3
                         className="text-2xl font-playfair font-bold text-text-dark"
                         data-testid={`hair-service-title-${index}`}
                       >
                         {service.title}
                       </h3>
-                      <span 
+                      <span
                         className="text-primary font-semibold text-lg"
                         data-testid={`hair-service-price-${index}`}
                       >
                         {service.price}
                       </span>
                     </div>
-                    <p 
+                    <p
                       className="text-gray-600 mb-6 leading-relaxed"
                       data-testid={`hair-service-description-${index}`}
                     >
@@ -136,7 +162,7 @@ const Hair = () => {
                       <h4 className="font-semibold text-text-dark mb-3">Service Includes:</h4>
                       <ul className="grid grid-cols-2 gap-2">
                         {service.features.map((feature, featureIndex) => (
-                          <li 
+                          <li
                             key={featureIndex}
                             className="text-sm text-gray-600 flex items-center"
                             data-testid={`hair-service-feature-${index}-${featureIndex}`}
@@ -148,7 +174,7 @@ const Hair = () => {
                       </ul>
                     </div>
                     <Link href="/booking">
-                      <Button 
+                      <Button
                         className="w-full bg-primary text-white hover:bg-secondary"
                         data-testid={`hair-service-book-${index}`}
                       >
@@ -183,15 +209,15 @@ const Hair = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {beforeAfter.map((transformation, index) => (
               <ScrollReveal key={index} delay={index * 100}>
-                <div 
+                <div
                   className="bg-white rounded-2xl p-6 shadow-lg"
                   data-testid={`hair-transformation-${index}`}
                 >
                   <div className="grid grid-cols-2 gap-4 mb-4">
                     <div>
                       <p className="text-sm font-semibold text-gray-500 mb-2">BEFORE</p>
-                      <img 
-                        src={transformation.before} 
+                      <img
+                        src={transformation.before}
                         alt="Before treatment"
                         className="w-full h-64 object-cover rounded-lg"
                         data-testid={`hair-before-${index}`}
@@ -199,8 +225,8 @@ const Hair = () => {
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-gold mb-2">AFTER</p>
-                      <img 
-                        src={transformation.after} 
+                      <img
+                        src={transformation.after}
                         alt="After treatment"
                         className="w-full h-64 object-cover rounded-lg"
                         data-testid={`hair-after-${index}`}
@@ -208,7 +234,7 @@ const Hair = () => {
                     </div>
                   </div>
                   <div className="text-center">
-                    <h4 
+                    <h4
                       className="font-playfair font-bold text-xl text-text-dark"
                       data-testid={`hair-treatment-name-${index}`}
                     >
@@ -223,7 +249,7 @@ const Hair = () => {
       </section>
 
       {/* Hair Care Tips */}
-      <section className="py-24 bg-white" data-testid="hair-care-tips">
+      <section className="py-16 bg-white" data-testid="hair-care-tips">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal>
@@ -252,7 +278,7 @@ const Hair = () => {
                       description: 'Trim every 6-8 weeks to maintain healthy ends and promote growth.',
                     },
                   ].map((tip, index) => (
-                    <div 
+                    <div
                       key={tip.title}
                       className="flex items-start space-x-4"
                       data-testid={`hair-tip-${index}`}
@@ -261,13 +287,13 @@ const Hair = () => {
                         {tip.icon}
                       </div>
                       <div>
-                        <h3 
+                        <h3
                           className="text-xl font-playfair font-bold mb-2 text-text-dark"
                           data-testid={`hair-tip-title-${index}`}
                         >
                           {tip.title}
                         </h3>
-                        <p 
+                        <p
                           className="text-gray-600 leading-relaxed"
                           data-testid={`hair-tip-description-${index}`}
                         >
@@ -281,40 +307,44 @@ const Hair = () => {
             </ScrollReveal>
 
             <ScrollReveal delay={200}>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4">
-                  <div className="img-zoom-container rounded-2xl overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
-                      alt="Hair care"
-                      className="img-zoom w-full h-48 object-cover"
+              <div ref={containerRef} className="grid grid-cols-2 gap-4 md:gap-6 order-1 lg:order-2">
+                {/* Left Column */}
+                <div className="space-y-4 md:space-y-6">
+                  <div className="img-zoom-container rounded-2xl overflow-hidden shadow-xl transition-shadow duration-500">
+                    <img
+                      src="https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400"
+                      alt="Salon interior"
+                      className="img-zoom w-full h-32 md:h-48 object-cover"
                     />
                   </div>
-                  <div className="img-zoom-container rounded-2xl overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400" 
-                      alt="Hair products"
-                      className="img-zoom w-full h-64 object-cover"
+                  <div className="img-zoom-container rounded-2xl overflow-hidden shadow-xl transition-shadow duration-500">
+                    <img
+                      src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400"
+                      alt="Beauty treatment"
+                      className="img-zoom w-full h-48 md:h-64 object-cover"
                     />
                   </div>
                 </div>
-                <div className="space-y-4 pt-8">
-                  <div className="img-zoom-container rounded-2xl overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400" 
-                      alt="Hair styling"
-                      className="img-zoom w-full h-64 object-cover"
+
+                {/* Right Column */}
+                <div className="space-y-4 md:space-y-6 pt-4 md:pt-8">
+                  <div className="img-zoom-container rounded-2xl overflow-hidden shadow-xl transition-shadow duration-500">
+                    <img
+                      src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400"
+                      alt="Beauty products"
+                      className="img-zoom w-full h-48 md:h-64 object-cover"
                     />
                   </div>
-                  <div className="img-zoom-container rounded-2xl overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
-                      alt="Hair color"
-                      className="img-zoom w-full h-48 object-cover"
+                  <div className="img-zoom-container rounded-2xl overflow-hidden shadow-xl transition-shadow duration-500">
+                    <img
+                      src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400"
+                      alt="Team working"
+                      className="img-zoom w-full h-32 md:h-48 object-cover"
                     />
                   </div>
                 </div>
               </div>
+
             </ScrollReveal>
           </div>
         </div>
@@ -332,7 +362,7 @@ const Hair = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/booking">
-                <Button 
+                <Button
                   className="bg-white text-primary px-10 py-4 rounded-full font-semibold text-lg hover:bg-gold hover:text-white transition-all duration-300 shadow-xl"
                   data-testid="hair-consultation-button"
                 >

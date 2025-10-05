@@ -2,8 +2,32 @@ import { Link } from 'wouter';
 import { ArrowRight, Leaf, Waves, Zap, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Spa = () => {
+   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      const images = containerRef.current.querySelectorAll(".img-zoom-container");
+
+      gsap.from(images, {
+        opacity: 0,
+        y: 50,
+        stagger: 0.3, // delay between each image
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%", // start when container top hits 80% of viewport
+          end: "bottom 20%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    }
+  }, []);
   const services = [
     {
       title: 'Aromatherapy Massage',
@@ -76,9 +100,9 @@ const Spa = () => {
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
           <ScrollReveal>
             <div className="mb-6">
-              <Leaf className="text-6xl text-gold mx-auto mb-4" />
+              <Leaf className="text-6xl text-text-dark mx-auto mb-4" />
             </div>
-            <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6" data-testid="spa-hero-title">
+            <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6 text-text-dark" data-testid="spa-hero-title">
               Relax. Refresh. Rejuvenate.
             </h1>
             <p className="text-xl text-gray-100 max-w-2xl mx-auto mb-8" data-testid="spa-hero-description">
@@ -335,41 +359,45 @@ const Spa = () => {
               </div>
             </ScrollReveal>
 
-            <ScrollReveal delay={200}>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4">
-                  <div className="img-zoom-container rounded-2xl overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
-                      alt="Meditation"
-                      className="img-zoom w-full h-48 object-cover"
+           <ScrollReveal delay={200}>
+              <div ref={containerRef} className="grid grid-cols-2 gap-4 md:gap-6 order-1 lg:order-2">
+                {/* Left Column */}
+                <div className="space-y-4 md:space-y-6">
+                  <div className="img-zoom-container rounded-2xl overflow-hidden shadow-xl transition-shadow duration-500">
+                    <img
+                      src="https://images.unsplash.com/photo-1582139329536-e7284fece509?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
+                      alt="Salon interior"
+                      className="img-zoom w-full h-32 md:h-48 object-cover"
                     />
                   </div>
-                  <div className="img-zoom-container rounded-2xl overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400" 
-                      alt="Essential oils"
-                      className="img-zoom w-full h-64 object-cover"
+                  <div className="img-zoom-container rounded-2xl overflow-hidden shadow-xl transition-shadow duration-500">
+                    <img
+                      src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400"
+                      alt="Beauty treatment"
+                      className="img-zoom w-full h-48 md:h-64 object-cover"
                     />
                   </div>
                 </div>
-                <div className="space-y-4 pt-8">
-                  <div className="img-zoom-container rounded-2xl overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400" 
-                      alt="Spa stones"
-                      className="img-zoom w-full h-64 object-cover"
+
+                {/* Right Column */}
+                <div className="space-y-4 md:space-y-6 pt-4 md:pt-8">
+                  <div className="img-zoom-container rounded-2xl overflow-hidden shadow-xl transition-shadow duration-500">
+                    <img
+                      src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400"
+                      alt="Beauty products"
+                      className="img-zoom w-full h-48 md:h-64 object-cover"
                     />
                   </div>
-                  <div className="img-zoom-container rounded-2xl overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1582139329536-e7284fece509?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
-                      alt="Relaxation"
-                      className="img-zoom w-full h-48 object-cover"
+                  <div className="img-zoom-container rounded-2xl overflow-hidden shadow-xl transition-shadow duration-500">
+                    <img
+                      src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
+                      alt="Team working"
+                      className="img-zoom w-full h-32 md:h-48 object-cover"
                     />
                   </div>
                 </div>
               </div>
+        
             </ScrollReveal>
           </div>
         </div>

@@ -2,8 +2,33 @@ import { Link } from 'wouter';
 import { ArrowRight, Sparkles, Shield, Sun, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Skin = () => {
+
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      const images = containerRef.current.querySelectorAll(".img-zoom-container");
+
+      gsap.from(images, {
+        opacity: 0,
+        y: 50,
+        stagger: 0.3, // delay between each image
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%", // start when container top hits 80% of viewport
+          end: "bottom 20%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    }
+  }, []);
   const services = [
     {
       title: 'HydraFacial',
@@ -65,7 +90,7 @@ const Skin = () => {
   return (
     <div className="min-h-screen pt-20" data-testid="skin-services-page">
       {/* Hero Section */}
-      <section 
+      <section
         className="relative py-32 flex items-center justify-center overflow-hidden parallax"
         style={{
           backgroundImage: 'url(https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080)'
@@ -76,9 +101,9 @@ const Skin = () => {
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
           <ScrollReveal>
             <div className="mb-6">
-              <Sparkles className="text-6xl text-gold mx-auto mb-4" />
+              <Sparkles className="text-6xl text-text-dark mx-auto mb-4" />
             </div>
-            <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6" data-testid="skin-hero-title">
+            <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6 text-text-dark" data-testid="skin-hero-title">
               Glow that Speaks for You
             </h1>
             <p className="text-xl text-gray-100 max-w-2xl mx-auto mb-8" data-testid="skin-hero-description">
@@ -113,13 +138,13 @@ const Skin = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {services.map((service, index) => (
               <ScrollReveal key={service.title} delay={index * 100}>
-                <div 
+                <div
                   className="bg-bg-light rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
                   data-testid={`skin-service-${index}`}
                 >
                   <div className="img-zoom-container h-64">
-                    <img 
-                      src={service.image} 
+                    <img
+                      src={service.image}
                       alt={service.title}
                       className="img-zoom w-full h-full object-cover"
                       data-testid={`skin-service-image-${index}`}
@@ -128,27 +153,27 @@ const Skin = () => {
                   <div className="p-8">
                     <div className="flex justify-between items-start mb-4">
                       <div>
-                        <h3 
+                        <h3
                           className="text-2xl font-playfair font-bold text-text-dark mb-1"
                           data-testid={`skin-service-title-${index}`}
                         >
                           {service.title}
                         </h3>
-                        <span 
+                        <span
                           className="text-sm text-gray-500"
                           data-testid={`skin-service-duration-${index}`}
                         >
                           {service.duration}
                         </span>
                       </div>
-                      <span 
+                      <span
                         className="text-primary font-semibold text-lg"
                         data-testid={`skin-service-price-${index}`}
                       >
                         {service.price}
                       </span>
                     </div>
-                    <p 
+                    <p
                       className="text-gray-600 mb-6 leading-relaxed"
                       data-testid={`skin-service-description-${index}`}
                     >
@@ -158,7 +183,7 @@ const Skin = () => {
                       <h4 className="font-semibold text-text-dark mb-3">Treatment Includes:</h4>
                       <ul className="grid grid-cols-2 gap-2">
                         {service.features.map((feature, featureIndex) => (
-                          <li 
+                          <li
                             key={featureIndex}
                             className="text-sm text-gray-600 flex items-center"
                             data-testid={`skin-service-feature-${index}-${featureIndex}`}
@@ -170,7 +195,7 @@ const Skin = () => {
                       </ul>
                     </div>
                     <Link href="/booking">
-                      <Button 
+                      <Button
                         className="w-full bg-primary text-white hover:bg-secondary"
                         data-testid={`skin-service-book-${index}`}
                       >
@@ -205,20 +230,20 @@ const Skin = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {skinConcerns.map((item, index) => (
               <ScrollReveal key={item.concern} delay={index * 100}>
-                <div 
+                <div
                   className="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300"
                   data-testid={`skin-concern-${index}`}
                 >
                   <div className="w-16 h-16 mx-auto mb-4 bg-gray-50 rounded-full flex items-center justify-center">
                     {item.icon}
                   </div>
-                  <h3 
+                  <h3
                     className="text-xl font-playfair font-bold mb-3 text-text-dark"
                     data-testid={`skin-concern-title-${index}`}
                   >
                     {item.concern}
                   </h3>
-                  <p 
+                  <p
                     className="text-gray-600 text-sm leading-relaxed"
                     data-testid={`skin-concern-solution-${index}`}
                   >
@@ -253,7 +278,7 @@ const Skin = () => {
                     'Home care routine guidance',
                     'Progress tracking and adjustments',
                   ].map((benefit, index) => (
-                    <div 
+                    <div
                       key={index}
                       className="flex items-center"
                       data-testid={`consultation-benefit-${index}`}
@@ -272,40 +297,44 @@ const Skin = () => {
             </ScrollReveal>
 
             <ScrollReveal delay={200}>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4">
-                  <div className="img-zoom-container rounded-2xl overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
-                      alt="Skin analysis"
-                      className="img-zoom w-full h-48 object-cover"
+              <div ref={containerRef} className="grid grid-cols-2 gap-4 md:gap-6 order-1 lg:order-2">
+                {/* Left Column */}
+                <div className="space-y-4 md:space-y-6">
+                  <div className="img-zoom-container rounded-2xl overflow-hidden shadow-xl transition-shadow duration-500">
+                    <img
+                      src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400"
+                      alt="Salon interior"
+                      className="img-zoom w-full h-32 md:h-48 object-cover"
                     />
                   </div>
-                  <div className="img-zoom-container rounded-2xl overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400" 
-                      alt="Facial treatment"
-                      className="img-zoom w-full h-64 object-cover"
+                  <div className="img-zoom-container rounded-2xl overflow-hidden shadow-xl transition-shadow duration-500">
+                    <img
+                      src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400"
+                      alt="Beauty treatment"
+                      className="img-zoom w-full h-48 md:h-64 object-cover"
                     />
                   </div>
                 </div>
-                <div className="space-y-4 pt-8">
-                  <div className="img-zoom-container rounded-2xl overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400" 
-                      alt="Glowing skin"
-                      className="img-zoom w-full h-64 object-cover"
+
+                {/* Right Column */}
+                <div className="space-y-4 md:space-y-6 pt-4 md:pt-8">
+                  <div className="img-zoom-container rounded-2xl overflow-hidden shadow-xl transition-shadow duration-500">
+                    <img
+                      src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
+                      alt="Beauty products"
+                      className="img-zoom w-full h-48 md:h-64 object-cover"
                     />
                   </div>
-                  <div className="img-zoom-container rounded-2xl overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
-                      alt="Skincare products"
-                      className="img-zoom w-full h-48 object-cover"
+                  <div className="img-zoom-container rounded-2xl overflow-hidden shadow-xl transition-shadow duration-500">
+                    <img
+                      src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
+                      alt="Team working"
+                      className="img-zoom w-full h-32 md:h-48 object-cover"
                     />
                   </div>
                 </div>
               </div>
+
             </ScrollReveal>
           </div>
         </div>
@@ -323,7 +352,7 @@ const Skin = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/booking">
-                <Button 
+                <Button
                   className="bg-white text-primary px-10 py-4 rounded-full font-semibold text-lg hover:bg-gold hover:text-white transition-all duration-300 shadow-xl"
                   data-testid="skin-treatment-button"
                 >

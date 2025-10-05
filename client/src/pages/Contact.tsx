@@ -8,6 +8,8 @@ import { Label } from '@/components/ui/label';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import { useToast } from '@/hooks/use-toast';
 
+import { ChevronDown } from 'lucide-react';
+
 interface ContactForm {
   name: string;
   email: string;
@@ -17,6 +19,13 @@ interface ContactForm {
 }
 
 const Contact = () => {
+  // After
+const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+const toggleFAQ = (index: number) => {
+  setActiveIndex(activeIndex === index ? null : index);
+};
+
   const [formData, setFormData] = useState<ContactForm>({
     name: '',
     email: '',
@@ -34,16 +43,16 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
-      
+
       toast({
         title: "Message Sent!",
         description: "Thank you for contacting us. We'll get back to you within 24 hours.",
       });
-      
+
       setFormData({
         name: '',
         email: '',
@@ -61,6 +70,28 @@ const Contact = () => {
       setIsSubmitting(false);
     }
   };
+  const faqs = [
+    {
+      question: 'What are your cancellation policies?',
+      answer: 'You can cancel or reschedule appointments up to 24 hours in advance without any charges.',
+    },
+    {
+      question: 'Do you offer group booking discounts?',
+      answer: 'Yes! We offer discounts for group bookings of 3 or more clients. Contact us for details.',
+    },
+    {
+      question: 'Can I reschedule my appointment?',
+      answer: 'Absolutely! Rescheduling is possible up to 12 hours before your scheduled appointment.',
+    },
+    {
+      question: 'What payment methods do you accept?',
+      answer: 'We accept cash, credit/debit cards, and all major UPI methods for your convenience.',
+    },
+    {
+      question: 'Do you provide custom packages?',
+      answer: 'Yes! You can create personalized packages based on your needs. Contact our team for assistance.',
+    },
+  ];
 
   const contactInfo = [
     {
@@ -96,7 +127,7 @@ const Contact = () => {
   return (
     <div className="min-h-screen pt-20" data-testid="contact-page">
       {/* Hero Section */}
-      <section 
+      <section
         className="relative py-32 flex items-center justify-center overflow-hidden parallax"
         style={{
           backgroundImage: 'url(https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080)'
@@ -106,10 +137,10 @@ const Contact = () => {
         <div className="hero-gradient absolute inset-0"></div>
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
           <ScrollReveal>
-            <span className="inline-block px-6 py-2 bg-gold/20 backdrop-blur-sm border border-gold/30 rounded-full text-gold font-semibold text-sm tracking-wider mb-6">
+            <span className="inline-block px-6 py-2 bg-gold/20 backdrop-blur-sm border border-gold/30 rounded-full text-text-dark font-semibold text-sm tracking-wider mb-6">
               GET IN TOUCH
             </span>
-            <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6" data-testid="contact-hero-title">
+            <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6 text-text-dark" data-testid="contact-hero-title">
               Let's Connect
             </h1>
             <p className="text-xl text-gray-100 max-w-2xl mx-auto" data-testid="contact-hero-description">
@@ -125,7 +156,7 @@ const Contact = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {contactInfo.map((info, index) => (
               <ScrollReveal key={info.title} delay={index * 100}>
-                <Card 
+                <Card
                   className="text-center hover:shadow-xl transition-all duration-300 h-full"
                   data-testid={`contact-info-${index}`}
                 >
@@ -138,7 +169,7 @@ const Contact = () => {
                     </h3>
                     <div className="space-y-2">
                       {info.details.map((detail, detailIndex) => (
-                        <p 
+                        <p
                           key={detailIndex}
                           className="text-gray-600"
                           data-testid={`contact-detail-${index}-${detailIndex}`}
@@ -170,7 +201,7 @@ const Contact = () => {
                     We're Here to Help
                   </h2>
                   <p className="text-gray-600 leading-relaxed" data-testid="contact-form-description">
-                    Have questions about our services, want to book an appointment, or need a custom beauty package? 
+                    Have questions about our services, want to book an appointment, or need a custom beauty package?
                     Fill out the form below and our team will get back to you within 24 hours.
                   </p>
                 </div>
@@ -188,7 +219,7 @@ const Contact = () => {
                           <Label htmlFor="name" className="text-text-dark mb-2 block">
                             Full Name *
                           </Label>
-                          <Input 
+                          <Input
                             id="name"
                             value={formData.name}
                             onChange={(e) => updateFormData('name', e.target.value)}
@@ -201,7 +232,7 @@ const Contact = () => {
                           <Label htmlFor="phone" className="text-text-dark mb-2 block">
                             Phone Number
                           </Label>
-                          <Input 
+                          <Input
                             id="phone"
                             value={formData.phone}
                             onChange={(e) => updateFormData('phone', e.target.value)}
@@ -210,12 +241,12 @@ const Contact = () => {
                           />
                         </div>
                       </div>
-                      
+
                       <div>
                         <Label htmlFor="email" className="text-text-dark mb-2 block">
                           Email Address *
                         </Label>
-                        <Input 
+                        <Input
                           id="email"
                           type="email"
                           value={formData.email}
@@ -230,7 +261,7 @@ const Contact = () => {
                         <Label htmlFor="subject" className="text-text-dark mb-2 block">
                           Subject *
                         </Label>
-                        <Input 
+                        <Input
                           id="subject"
                           value={formData.subject}
                           onChange={(e) => updateFormData('subject', e.target.value)}
@@ -244,7 +275,7 @@ const Contact = () => {
                         <Label htmlFor="message" className="text-text-dark mb-2 block">
                           Message *
                         </Label>
-                        <Textarea 
+                        <Textarea
                           id="message"
                           value={formData.message}
                           onChange={(e) => updateFormData('message', e.target.value)}
@@ -255,8 +286,8 @@ const Contact = () => {
                         />
                       </div>
 
-                      <Button 
-                        type="submit" 
+                      <Button
+                        type="submit"
                         disabled={isSubmitting}
                         className="w-full bg-primary text-white hover:bg-secondary py-3 text-lg"
                         data-testid="contact-submit-button"
@@ -300,19 +331,19 @@ const Contact = () => {
                 {/* Quick Contact Options */}
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-xl font-playfair">
+                    <CardTitle className="text-xl font-playfair text-center md:text-left">
                       Quick Contact Options
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="flex items-center justify-between p-4 bg-bg-light rounded-lg">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-bg-light rounded-lg gap-4">
                       <div>
                         <h4 className="font-semibold text-text-dark">Emergency Bookings</h4>
                         <p className="text-sm text-gray-600">For same-day appointments</p>
                       </div>
-                      <a 
+                      <a
                         href="tel:+911234567890"
-                        className="bg-primary text-white px-4 py-2 rounded-full font-semibold hover:bg-secondary transition-colors"
+                        className="flex items-center justify-center md:w-auto bg-primary text-white px-4 py-2 rounded-full font-semibold hover:bg-secondary transition-colors"
                         data-testid="emergency-call-button"
                       >
                         <Phone className="w-4 h-4 inline mr-2" />
@@ -320,16 +351,16 @@ const Contact = () => {
                       </a>
                     </div>
 
-                    <div className="flex items-center justify-between p-4 bg-bg-light rounded-lg">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-bg-light rounded-lg gap-4">
                       <div>
                         <h4 className="font-semibold text-text-dark">WhatsApp Support</h4>
                         <p className="text-sm text-gray-600">Quick questions & booking</p>
                       </div>
-                      <a 
+                      <a
                         href="https://wa.me/1234567890"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-green-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-green-700 transition-colors"
+                        className="flex items-center justify-center md:w-auto bg-green-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-green-700 transition-colors"
                         data-testid="whatsapp-button"
                       >
                         <MessageCircle className="w-4 h-4 inline mr-2" />
@@ -339,32 +370,46 @@ const Contact = () => {
                   </CardContent>
                 </Card>
 
+
                 {/* FAQ Quick Links */}
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-xl font-playfair">
-                      Frequently Asked
+                    <CardTitle className="text-2xl font-playfair text-center md:text-left mb-2">
+                      Frequently Asked Questions
                     </CardTitle>
+                    <p className="text-gray-600 text-center md:text-left">
+                      Everything you need to know about our services
+                    </p>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-3">
-                      {[
-                        'What are your cancellation policies?',
-                        'Do you offer group booking discounts?',
-                        'Can I reschedule my appointment?',
-                        'What payment methods do you accept?',
-                      ].map((question, index) => (
-                        <button 
+                    <div className="space-y-4">
+                      {faqs.map((faq, index) => (
+                        <div
                           key={index}
-                          className="w-full text-left p-3 rounded-lg hover:bg-bg-light transition-colors text-gray-600 hover:text-primary"
-                          data-testid={`faq-item-${index}`}
+                          className="bg-bg-light rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
                         >
-                          {question}
-                        </button>
+                          <button
+                            onClick={() => toggleFAQ(index)}
+                            className="w-full flex justify-between items-center p-4 md:p-5 text-left text-gray-700 font-medium hover:text-primary transition-colors"
+                          >
+                            <span>{faq.question}</span>
+                            <ChevronDown
+                              className={`w-5 h-5 transition-transform duration-300 ${activeIndex === index ? 'rotate-180 text-primary' : ''
+                                }`}
+                            />
+                          </button>
+                          <div
+                            className={`overflow-hidden transition-all duration-500 ease-in-out ${activeIndex === index ? 'max-h-96 p-4 md:p-5' : 'max-h-0 p-0'
+                              }`}
+                          >
+                            <p className="text-gray-600">{faq.answer}</p>
+                          </div>
+                        </div>
                       ))}
                     </div>
                   </CardContent>
                 </Card>
+
               </div>
             </ScrollReveal>
           </div>
@@ -382,14 +427,14 @@ const Contact = () => {
               Subscribe to our newsletter for beauty tips, special offers, and updates on new services
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <Input 
-                type="email" 
+              <Input
+                type="email"
                 placeholder="Enter your email"
                 className="flex-1 bg-white text-text-dark"
                 data-testid="newsletter-email-input"
               />
-              <Button 
-                className="bg-white text-primary hover:bg-gold hover:text-white transition-colors px-8"
+              <Button
+                className="bg-white btn-gradient text-primary hover:bg-gold hover:text-white transition-colors px-8"
                 data-testid="newsletter-subscribe-button"
               >
                 Subscribe

@@ -25,6 +25,7 @@ import Pricing from "./pages/Pricing";
 import Booking from "./pages/Booking";
 import Contact from "./pages/Contact";
 import NotFound from "@/pages/not-found";
+import FloatingActions from "./components/ui/FloatingActions";
 
 // Scroll Progress Bar Component
 function ScrollProgress() {
@@ -68,6 +69,7 @@ function Router() {
           <Route component={NotFound} />
         </Switch>
       </main>
+      {/* <FloatingActions/> */}
       <Footer />
     </div>
   );

@@ -91,7 +91,7 @@ const Booking = () => {
   return (
     <div className="min-h-screen pt-20" data-testid="booking-page">
       {/* Hero Section */}
-      <section 
+      <section
         className="relative py-20 flex items-center justify-center overflow-hidden parallax"
         style={{
           backgroundImage: 'url(https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080)'
@@ -101,7 +101,7 @@ const Booking = () => {
         <div className="hero-gradient absolute inset-0"></div>
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
           <ScrollReveal>
-            <h1 className="text-4xl md:text-5xl font-playfair font-bold mb-4" data-testid="booking-hero-title">
+            <h1 className="text-4xl md:text-5xl font-playfair font-bold mb-4 text-text-dark" data-testid="booking-hero-title">
               Book Your Appointment
             </h1>
             <p className="text-lg text-gray-100" data-testid="booking-hero-description">
@@ -115,43 +115,45 @@ const Booking = () => {
       <section className="py-16 bg-bg-light" data-testid="booking-process">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Progress Steps */}
-          <div className="mb-12" data-testid="booking-progress">
-            <div className="flex justify-between items-center">
+          <div className="hidden md:block mb-12" data-testid="booking-progress">
+            <div className="flex justify-between items-center relative">
               {steps.map((step, index) => {
                 const isActive = step.id === currentStep;
-                const isCompleted = steps.findIndex(s => s.id === currentStep) > index;
+                const isCompleted = steps.findIndex((s) => s.id === currentStep) > index;
                 const StepIcon = step.icon;
-                
+
                 return (
-                  <div 
+                  <div
                     key={step.id}
                     className={`flex flex-col items-center flex-1 ${index < steps.length - 1 ? 'relative' : ''}`}
                     data-testid={`booking-step-${step.id}`}
                   >
-                    <div 
-                      className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 transition-all duration-300 ${
-                        isCompleted 
-                          ? 'bg-primary text-white' 
-                          : isActive 
-                          ? 'bg-primary text-white' 
+                    {/* Circle */}
+                    <div
+                      className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 transition-all duration-300 z-10 ${isCompleted
+                        ? 'bg-[#a45c40] text-white'
+                        : isActive
+                          ? 'bg-[#a45c40] text-white'
                           : 'bg-gray-200 text-gray-500'
-                      }`}
+                        }`}
                     >
                       <StepIcon className="w-6 h-6" />
                     </div>
-                    <span 
-                      className={`text-sm font-medium ${
-                        isActive || isCompleted ? 'text-primary' : 'text-gray-500'
-                      }`}
+
+                    {/* Title */}
+                    <span
+                      className={`text-sm font-medium ${isActive || isCompleted ? 'text-[#a45c40]' : 'text-gray-500'
+                        }`}
                     >
                       {step.title}
                     </span>
+
+                    {/* Connector line */}
                     {index < steps.length - 1 && (
-                      <div 
-                        className={`absolute top-6 left-1/2 w-full h-0.5 -translate-y-1/2 ${
-                          isCompleted ? 'bg-primary' : 'bg-gray-200'
-                        }`}
-                        style={{ left: '50%', width: 'calc(100% - 3rem)' }}
+                      <div
+                        className={`absolute top-6 left-1/2 w-full h-0.5 -translate-y-1/2 ${isCompleted ? 'bg-[#a45c40]' : 'bg-gray-200'
+                          }`}
+                        style={{ width: 'calc(100% - 1rem)' }}
                       />
                     )}
                   </div>
@@ -159,6 +161,8 @@ const Booking = () => {
               })}
             </div>
           </div>
+
+
 
           <Card className="shadow-xl" data-testid="booking-form-card">
             <CardHeader>
@@ -170,34 +174,52 @@ const Booking = () => {
               {/* Service Selection */}
               {currentStep === 'service' && (
                 <div className="space-y-6" data-testid="service-selection">
-                  <p className="text-gray-600 text-center mb-8">
+                  {/* Heading */}
+                  <p className="text-gray-600 text-center mb-6 sm:mb-8 text-base sm:text-lg px-4">
                     Choose the service you'd like to book
                   </p>
-                  <RadioGroup 
-                    value={bookingData.service} 
+
+                  <RadioGroup
+                    value={bookingData.service}
                     onValueChange={(value) => updateBookingData('service', value)}
                   >
-                    <div className="grid md:grid-cols-2 gap-4">
+                    {/* Responsive grid — single column on mobile, two on medium screens, three on large */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 px-2 sm:px-0">
                       {mainServices.map((service) => (
                         <div key={service.id} className="relative">
-                          <RadioGroupItem 
-                            value={service.id} 
+                          {/* Radio Button (hidden) */}
+                          <RadioGroupItem
+                            value={service.id}
                             id={service.id}
                             className="peer sr-only"
                             data-testid={`service-option-${service.id}`}
                           />
-                          <Label 
+
+                          {/* Card Label */}
+                          <Label
                             htmlFor={service.id}
-                            className="flex items-start space-x-4 p-6 border-2 border-gray-200 rounded-xl cursor-pointer peer-checked:border-primary peer-checked:bg-primary/5 hover:border-primary/50 transition-all duration-300"
+                            className="
+                flex flex-col sm:flex-row items-center sm:items-start 
+                space-y-3 sm:space-y-0 sm:space-x-4
+                p-5 sm:p-6 border-2 border-gray-200 rounded-xl cursor-pointer
+                peer-checked:border-[#a45c40] peer-checked:bg-[#a45c40]/5 
+                hover:border-[#a45c40]/50 transition-all duration-300
+                text-center sm:text-left
+              "
                           >
-                            <div className={`w-12 h-12 ${service.iconColor} rounded-full flex items-center justify-center flex-shrink-0`}>
+                            {/* Icon */}
+                            <div
+                              className={`w-12 h-12 ${service.iconColor} rounded-full flex items-center justify-center flex-shrink-0`}
+                            >
                               <service.icon className="w-6 h-6" />
                             </div>
+
+                            {/* Text Content */}
                             <div className="flex-1">
-                              <h3 className="font-playfair font-bold text-lg text-text-dark mb-2">
+                              <h3 className="font-playfair font-bold text-base sm:text-lg text-text-dark mb-1 sm:mb-2">
                                 {service.title}
                               </h3>
-                              <p className="text-gray-600 text-sm leading-relaxed">
+                              <p className="text-gray-600 text-sm leading-relaxed px-1 sm:px-0">
                                 {service.description}
                               </p>
                             </div>
@@ -209,6 +231,7 @@ const Booking = () => {
                 </div>
               )}
 
+
               {/* Date & Time Selection */}
               {currentStep === 'datetime' && (
                 <div className="space-y-8" data-testid="datetime-selection">
@@ -217,7 +240,7 @@ const Booking = () => {
                       <Calendar className="inline w-5 h-5 mr-2" />
                       Select Date
                     </Label>
-                    <Input 
+                    <Input
                       type="date"
                       value={bookingData.date}
                       onChange={(e) => updateBookingData('date', e.target.value)}
@@ -226,7 +249,7 @@ const Booking = () => {
                       data-testid="date-input"
                     />
                   </div>
-                  
+
                   <div>
                     <Label className="text-lg font-semibold text-text-dark mb-4 block">
                       <Clock className="inline w-5 h-5 mr-2" />
@@ -238,11 +261,10 @@ const Booking = () => {
                           key={slot}
                           type="button"
                           variant={bookingData.time === slot ? "default" : "outline"}
-                          className={`py-3 ${
-                            bookingData.time === slot 
-                              ? 'bg-primary text-white' 
-                              : 'hover:bg-primary hover:text-white'
-                          }`}
+                          className={`py-3 ${bookingData.time === slot
+                            ? 'bg-primary text-white'
+                            : 'hover:bg-primary hover:text-white'
+                            }`}
                           onClick={() => updateBookingData('time', slot)}
                           data-testid={`time-slot-${slot.replace(/[^a-zA-Z0-9]/g, '')}`}
                         >
@@ -257,66 +279,77 @@ const Booking = () => {
               {/* Personal Details */}
               {currentStep === 'details' && (
                 <div className="space-y-6" data-testid="details-form">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
+                  {/* Name & Phone row */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Full Name */}
+                    <div className="w-full">
                       <Label htmlFor="name" className="flex items-center text-text-dark mb-2">
                         <User className="w-4 h-4 mr-2" />
                         Full Name *
                       </Label>
-                      <Input 
+                      <Input
                         id="name"
                         value={bookingData.name}
                         onChange={(e) => updateBookingData('name', e.target.value)}
                         placeholder="Enter your full name"
                         data-testid="name-input"
+                        className="w-full"
                       />
                     </div>
-                    <div>
+
+                    {/* Phone Number */}
+                    <div className="w-full">
                       <Label htmlFor="phone" className="flex items-center text-text-dark mb-2">
                         <Phone className="w-4 h-4 mr-2" />
                         Phone Number *
                       </Label>
-                      <Input 
+                      <Input
                         id="phone"
                         value={bookingData.phone}
                         onChange={(e) => updateBookingData('phone', e.target.value)}
                         placeholder="Enter your phone number"
                         data-testid="phone-input"
+                        className="w-full"
                       />
                     </div>
                   </div>
-                  
-                  <div>
+
+                  {/* Email */}
+                  <div className="w-full">
                     <Label htmlFor="email" className="flex items-center text-text-dark mb-2">
                       <Mail className="w-4 h-4 mr-2" />
                       Email Address *
                     </Label>
-                    <Input 
+                    <Input
                       id="email"
                       type="email"
                       value={bookingData.email}
                       onChange={(e) => updateBookingData('email', e.target.value)}
                       placeholder="Enter your email address"
                       data-testid="email-input"
+                      className="w-full"
                     />
                   </div>
 
-                  <div>
+                  {/* Special Requirements */}
+                  <div className="w-full">
                     <Label htmlFor="message" className="flex items-center text-text-dark mb-2">
                       <MessageCircle className="w-4 h-4 mr-2" />
-                      Special Requirements (Optional)
+                      Special Requirements
                     </Label>
-                    <Textarea 
+                    <Textarea
                       id="message"
                       value={bookingData.message}
                       onChange={(e) => updateBookingData('message', e.target.value)}
                       placeholder="Any special requirements or preferences..."
                       rows={4}
                       data-testid="message-input"
+                      className="w-full"
                     />
                   </div>
                 </div>
               )}
+
 
               {/* Confirmation */}
               {currentStep === 'confirmation' && (
@@ -324,7 +357,7 @@ const Booking = () => {
                   <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto">
                     <CheckCircle2 className="w-10 h-10 text-green-600" />
                   </div>
-                  
+
                   <div>
                     <h3 className="text-2xl font-playfair font-bold text-text-dark mb-4">
                       Booking Confirmed!
@@ -364,7 +397,7 @@ const Booking = () => {
 
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                     <p className="text-blue-800 text-sm">
-                      <strong>What's next?</strong> We'll send you a confirmation email shortly with all the details. 
+                      <strong>What's next?</strong> We'll send you a confirmation email shortly with all the details.
                       If you need to reschedule or have any questions, please call us at +91 123 456 7890.
                     </p>
                   </div>
@@ -372,26 +405,32 @@ const Booking = () => {
               )}
 
               {/* Navigation Buttons */}
+              {/* Navigation Buttons */}
               {currentStep !== 'confirmation' && (
-                <div className="flex justify-between pt-8 border-t" data-testid="booking-navigation">
-                  <Button 
+                <div
+                  className="pt-8 border-t flex flex-col sm:flex-row justify-between gap-4 sm:gap-0"
+                  data-testid="booking-navigation"
+                >
+                  {/* Previous Button */}
+                  <Button
                     type="button"
                     variant="outline"
                     onClick={handlePrevious}
                     disabled={currentStep === 'service'}
-                    className="flex items-center"
+                    className="flex items-center w-full sm:w-auto btn-gradient justify-center"
                     data-testid="booking-previous"
                   >
                     <ArrowLeft className="w-4 h-4 mr-2" />
                     Previous
                   </Button>
 
+                  {/* Next / Submit Button */}
                   {currentStep === 'details' ? (
-                    <Button 
+                    <Button
                       type="button"
                       onClick={handleSubmit}
                       disabled={!isStepValid() || isSubmitting}
-                      className="bg-primary text-white hover:bg-secondary flex items-center"
+                      className="bg-primary text-white hover:bg-secondary btn-gradient flex items-center w-full sm:w-auto btn-gradient justify-center"
                       data-testid="booking-submit"
                     >
                       {isSubmitting ? (
@@ -407,11 +446,11 @@ const Booking = () => {
                       )}
                     </Button>
                   ) : (
-                    <Button 
+                    <Button
                       type="button"
                       onClick={handleNext}
                       disabled={!isStepValid()}
-                      className="bg-primary text-white hover:bg-secondary flex items-center"
+                      className="btn-gradient text-white hover:bg-secondary flex items-center w-full sm:w-auto justify-center"
                       data-testid="booking-next"
                     >
                       Next
@@ -420,6 +459,7 @@ const Booking = () => {
                   )}
                 </div>
               )}
+
             </CardContent>
           </Card>
         </div>
@@ -436,7 +476,7 @@ const Booking = () => {
               Our friendly team is here to assist you with any questions or special requests.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a 
+              <a
                 href="tel:+911234567890"
                 className="flex items-center bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-secondary transition-colors"
                 data-testid="booking-call-button"
@@ -444,7 +484,7 @@ const Booking = () => {
                 <Phone className="w-4 h-4 mr-2" />
                 Call Us: +91 123 456 7890
               </a>
-              <a 
+              <a
                 href="https://wa.me/1234567890"
                 target="_blank"
                 rel="noopener noreferrer"

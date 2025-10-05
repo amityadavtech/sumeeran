@@ -2,8 +2,32 @@ import { Link } from 'wouter';
 import { ArrowRight, HandHeart, Palette, Shield, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Nails = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      const images = containerRef.current.querySelectorAll(".img-zoom-container");
+
+      gsap.from(images, {
+        opacity: 0,
+        y: 50,
+        stagger: 0.3, // delay between each image
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%", // start when container top hits 80% of viewport
+          end: "bottom 20%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    }
+  }, []);
   const services = [
     {
       title: 'Classic Manicure',
@@ -61,7 +85,7 @@ const Nails = () => {
   return (
     <div className="min-h-screen pt-20" data-testid="nail-services-page">
       {/* Hero Section */}
-      <section 
+      <section
         className="relative py-32 flex items-center justify-center overflow-hidden parallax"
         style={{
           backgroundImage: 'url(https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080)'
@@ -72,9 +96,9 @@ const Nails = () => {
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
           <ScrollReveal>
             <div className="mb-6">
-              <HandHeart className="text-6xl text-gold mx-auto mb-4" />
+              <HandHeart className="text-6xl text-text-dark mx-auto mb-4" />
             </div>
-            <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6" data-testid="nail-hero-title">
+            <h1 className="text-5xl md:text-6xl font-playfair text-text-dark font-bold mb-6" data-testid="nail-hero-title">
               Nail Perfection, Redefined
             </h1>
             <p className="text-xl text-gray-100 max-w-2xl mx-auto mb-8" data-testid="nail-hero-description">
@@ -109,13 +133,13 @@ const Nails = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {services.map((service, index) => (
               <ScrollReveal key={service.title} delay={index * 100}>
-                <div 
+                <div
                   className="bg-bg-light rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
                   data-testid={`nail-service-${index}`}
                 >
                   <div className="img-zoom-container h-64">
-                    <img 
-                      src={service.image} 
+                    <img
+                      src={service.image}
                       alt={service.title}
                       className="img-zoom w-full h-full object-cover"
                       data-testid={`nail-service-image-${index}`}
@@ -124,27 +148,27 @@ const Nails = () => {
                   <div className="p-8">
                     <div className="flex justify-between items-start mb-4">
                       <div>
-                        <h3 
+                        <h3
                           className="text-2xl font-playfair font-bold text-text-dark mb-1"
                           data-testid={`nail-service-title-${index}`}
                         >
                           {service.title}
                         </h3>
-                        <span 
+                        <span
                           className="text-sm text-gray-500"
                           data-testid={`nail-service-duration-${index}`}
                         >
                           {service.duration}
                         </span>
                       </div>
-                      <span 
+                      <span
                         className="text-primary font-semibold text-lg"
                         data-testid={`nail-service-price-${index}`}
                       >
                         {service.price}
                       </span>
                     </div>
-                    <p 
+                    <p
                       className="text-gray-600 mb-6 leading-relaxed"
                       data-testid={`nail-service-description-${index}`}
                     >
@@ -154,7 +178,7 @@ const Nails = () => {
                       <h4 className="font-semibold text-text-dark mb-3">Service Includes:</h4>
                       <ul className="grid grid-cols-2 gap-2">
                         {service.features.map((feature, featureIndex) => (
-                          <li 
+                          <li
                             key={featureIndex}
                             className="text-sm text-gray-600 flex items-center"
                             data-testid={`nail-service-feature-${index}-${featureIndex}`}
@@ -166,7 +190,7 @@ const Nails = () => {
                       </ul>
                     </div>
                     <Link href="/booking">
-                      <Button 
+                      <Button
                         className="w-full bg-primary text-white hover:bg-secondary"
                         data-testid={`nail-service-book-${index}`}
                       >
@@ -201,20 +225,20 @@ const Nails = () => {
           <div className="grid md:grid-cols-4 gap-6">
             {nailArtGallery.map((item, index) => (
               <ScrollReveal key={item.design} delay={index * 100}>
-                <div 
+                <div
                   className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group"
                   data-testid={`nail-art-${index}`}
                 >
                   <div className="img-zoom-container h-64">
-                    <img 
-                      src={item.image} 
+                    <img
+                      src={item.image}
                       alt={item.design}
                       className="img-zoom w-full h-full object-cover"
                       data-testid={`nail-art-image-${index}`}
                     />
                   </div>
                   <div className="p-6 text-center">
-                    <h3 
+                    <h3
                       className="text-lg font-playfair font-bold text-text-dark group-hover:text-primary transition-colors"
                       data-testid={`nail-art-title-${index}`}
                     >
@@ -261,7 +285,7 @@ const Nails = () => {
                       description: 'New files, buffers, and disposable items for every client.',
                     },
                   ].map((item, index) => (
-                    <div 
+                    <div
                       key={item.title}
                       className="flex items-start space-x-4"
                       data-testid={`hygiene-item-${index}`}
@@ -270,13 +294,13 @@ const Nails = () => {
                         {item.icon}
                       </div>
                       <div>
-                        <h3 
+                        <h3
                           className="text-xl font-playfair font-bold mb-2 text-text-dark"
                           data-testid={`hygiene-item-title-${index}`}
                         >
                           {item.title}
                         </h3>
-                        <p 
+                        <p
                           className="text-gray-600 leading-relaxed"
                           data-testid={`hygiene-item-description-${index}`}
                         >
@@ -290,40 +314,44 @@ const Nails = () => {
             </ScrollReveal>
 
             <ScrollReveal delay={200}>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4">
-                  <div className="img-zoom-container rounded-2xl overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
-                      alt="Clean nail station"
-                      className="img-zoom w-full h-48 object-cover"
+              <div ref={containerRef} className="grid grid-cols-2 gap-4 md:gap-6 order-1 lg:order-2">
+                {/* Left Column */}
+                <div className="space-y-4 md:space-y-6">
+                  <div className="img-zoom-container rounded-2xl overflow-hidden shadow-xl transition-shadow duration-500">
+                    <img
+                      src="https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
+                      alt="Salon interior"
+                      className="img-zoom w-full h-32 md:h-48 object-cover"
                     />
                   </div>
-                  <div className="img-zoom-container rounded-2xl overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h-400" 
-                      alt="Sterilized tools"
-                      className="img-zoom w-full h-64 object-cover"
+                  <div className="img-zoom-container rounded-2xl overflow-hidden shadow-xl transition-shadow duration-500">
+                    <img
+                      src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400"
+                      alt="Beauty treatment"
+                      className="img-zoom w-full h-48 md:h-64 object-cover"
                     />
                   </div>
                 </div>
-                <div className="space-y-4 pt-8">
-                  <div className="img-zoom-container rounded-2xl overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400" 
-                      alt="Premium nail products"
-                      className="img-zoom w-full h-64 object-cover"
+
+                {/* Right Column */}
+                <div className="space-y-4 md:space-y-6 pt-4 md:pt-8">
+                  <div className="img-zoom-container rounded-2xl overflow-hidden shadow-xl transition-shadow duration-500">
+                    <img
+                      src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h-400"
+                      alt="Beauty products"
+                      className="img-zoom w-full h-48 md:h-64 object-cover"
                     />
                   </div>
-                  <div className="img-zoom-container rounded-2xl overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
-                      alt="Clean workspace"
-                      className="img-zoom w-full h-48 object-cover"
+                  <div className="img-zoom-container rounded-2xl overflow-hidden shadow-xl transition-shadow duration-500">
+                    <img
+                      src="https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
+                      alt="Team working"
+                      className="img-zoom w-full h-32 md:h-48 object-cover"
                     />
                   </div>
                 </div>
               </div>
+
             </ScrollReveal>
           </div>
         </div>
@@ -341,7 +369,7 @@ const Nails = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/booking">
-                <Button 
+                <Button
                   className="bg-white text-accent px-10 py-4 rounded-full font-semibold text-lg hover:bg-gold hover:text-white transition-all duration-300 shadow-xl"
                   data-testid="nail-appointment-button"
                 >

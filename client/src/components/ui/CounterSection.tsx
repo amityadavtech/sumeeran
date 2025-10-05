@@ -9,32 +9,28 @@ interface CounterProps {
 
 const Counter = ({ target, label, delay = 0 }: CounterProps) => {
   const [count, setCount] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
   const counterRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
-          
-          setTimeout(() => {
-            const duration = 2000;
-            const increment = target / (duration / 16);
-            let current = 0;
+        if (entry.isIntersecting) {
+          const duration = 2000;
+          const increment = target / (duration / 16);
+          let current = 0;
 
-            const updateCounter = () => {
-              current += increment;
-              if (current < target) {
-                setCount(Math.floor(current));
-                requestAnimationFrame(updateCounter);
-              } else {
-                setCount(target);
-              }
-            };
+          const updateCounter = () => {
+            current += increment;
+            if (current < target) {
+              setCount(Math.floor(current));
+              requestAnimationFrame(updateCounter);
+            } else {
+              setCount(target);
+            }
+          };
 
-            updateCounter();
-          }, delay);
+          setTimeout(updateCounter, delay);
+          observer.disconnect();
         }
       },
       { threshold: 0.5 }
@@ -43,22 +39,14 @@ const Counter = ({ target, label, delay = 0 }: CounterProps) => {
     if (counterRef.current) {
       observer.observe(counterRef.current);
     }
-
-    return () => {
-      if (counterRef.current) {
-        observer.unobserve(counterRef.current);
-      }
-    };
-  }, [target, hasAnimated, delay]);
+  }, [target, delay]);
 
   return (
-    <div ref={counterRef} className="text-center" data-testid={`counter-${label.toLowerCase().replace(/\s+/g, '-')}`}>
-      <div className="text-5xl font-bold text-gold mb-2 font-playfair" data-testid={`counter-value-${label.toLowerCase().replace(/\s+/g, '-')}`}>
+    <div ref={counterRef} className="text-center">
+      <div className="text-4xl md:text-5xl font-bold text-[#c38370] mb-1 font-playfair">
         {count.toLocaleString()}
       </div>
-      <p className="text-gray-600 font-semibold" data-testid={`counter-label-${label.toLowerCase().replace(/\s+/g, '-')}`}>
-        {label}
-      </p>
+      <p className="text-[#a45c40] font-medium">{label}</p>
     </div>
   );
 };
@@ -72,15 +60,12 @@ const CounterSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-white" data-testid="counter-section">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-12">
+    <section className="py-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
             <ScrollReveal key={stat.label} delay={index * 100}>
-              <Counter 
-                target={stat.target} 
-                label={stat.label}
-              />
+              <Counter target={stat.target} label={stat.label} />
             </ScrollReveal>
           ))}
         </div>

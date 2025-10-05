@@ -3,6 +3,14 @@ import { useState, useEffect } from 'react';
 import { Sparkles, Clock, Gift } from 'lucide-react';
 import { Button } from './button';
 import { Link } from 'wouter';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "./carousel";
 
 const deals = [
   {
@@ -40,24 +48,45 @@ const deals = [
 ];
 
 const DealsCarousel = () => {
-  const [currentDeal, setCurrentDeal] = useState(0);
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentDeal((prev) => (prev + 1) % deals.length);
+      if (api) {
+        api.scrollNext();
+      }
     }, 4000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [api]);
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
 
   return (
-    <div className="relative overflow-hidden">
-      <div className="flex transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${currentDeal * 100}%)` }}>
-        {deals.map((deal, index) => {
-          const Icon = deal.icon;
-          return (
-            <div key={index} className="min-w-full px-2 md:px-4">
-              <div className={`relative bg-gradient-to-br ${deal.bgColor} rounded-2xl md:rounded-3xl p-6 md:p-12 text-white overflow-hidden group`}>
+    <div className="relative">
+      <Carousel
+        opts={{
+          align: "center",
+          loop: true,
+        }}
+        setApi={setApi}
+        className="w-full"
+      >
+        <CarouselContent className="ml-0">
+          {deals.map((deal, index) => {
+            const Icon = deal.icon;
+            return (
+            <CarouselItem key={index} className="px-2 md:px-4">
+              <div className={`relative bg-gradient-to-br ${deal.bgColor} rounded-2xl md:rounded-3xl p-6 md:p-12 text-white  group`}>
                 <div className="absolute top-0 right-0 w-48 md:w-64 h-48 md:h-64 bg-white/10 rounded-full blur-3xl transform translate-x-24 md:translate-x-32 -translate-y-24 md:-translate-y-32 group-hover:scale-150 transition-transform duration-700"></div>
                 <div className="absolute bottom-0 left-0 w-32 md:w-48 h-32 md:h-48 bg-white/10 rounded-full blur-3xl transform -translate-x-16 md:-translate-x-24 translate-y-16 md:translate-y-24 group-hover:scale-150 transition-transform duration-700"></div>
                 
@@ -85,19 +114,22 @@ const DealsCarousel = () => {
                   </Link>
                 </div>
               </div>
-            </div>
+            </CarouselItem>
           );
         })}
-      </div>
+        </CarouselContent>
+        <CarouselPrevious className="hidden md:flex -left-12 border-primary/30 hover:bg-primary/10 hover:border-primary" />
+        <CarouselNext className="hidden md:flex -right-12 border-primary/30 hover:bg-primary/10 hover:border-primary" />
+      </Carousel>
 
       {/* Progress Indicators */}
       <div className="flex justify-center gap-2 md:gap-3 mt-6 md:mt-8">
         {deals.map((_, index) => (
           <button
             key={index}
-            onClick={() => setCurrentDeal(index)}
+            onClick={() => api?.scrollTo(index)}
             className={`transition-all duration-300 rounded-full ${
-              index === currentDeal
+              index === current
                 ? 'w-8 md:w-12 h-2 md:h-3 bg-gradient-to-r from-primary to-gold'
                 : 'w-2 md:w-3 h-2 md:h-3 bg-gray-300 hover:bg-gray-400'
             }`}
